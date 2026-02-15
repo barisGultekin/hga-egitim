@@ -1,0 +1,71 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const locale = Astro.currentLocale || 'tr';
+const title = locale === 'tr' ? 'Yönetim Becerileri' : 'Management Skills';
+
+const content = {
+  tr: {
+    subtitle: 'Yönetim ve Liderlik Becerilerini Geliştirmeye Yönelik Programlarımız',
+    programs: [
+      'Değişim Yönetimi Eğitimi',
+      'Stratejik Planlama ve Karar Alma Eğitimi',
+      'Kendine Liderlik Edebilme Eğitimi',
+      'Lider Yönetici Olabilme Eğitimi',
+    ],
+    description1: 'Kurumun ihtiyaç ve beklentilerine uygun olarak dizayn ettiğimiz bu programlar, kendi içinde bir devamlılık sağlamaktadır. Bu eğitimler, ihtiyaç ve talebe uygun olarak tek tek de değerlendirilebilir.',
+    description2: 'Yöneticiliğe henüz başlamış ya da başlayacak profesyoneller için olduğu kadar, tecrübeli yöneticilerin de hem deneyimleri ve paylaştıkları hikayeler ile katkı sağlayacağı hem de kazanımlar elde edeceği programlardır.',
+    description3: 'Bu programların tamamında, katılımcı, kendisini içerisinde bulacağı örnekler ve uygulamalarla karşılaşır.',
+  },
+  en: {
+    subtitle: 'Our Programs for Developing Management and Leadership Skills',
+    programs: [
+      'Change Management Training',
+      'Strategic Planning and Decision Making Training',
+      'Self-Leadership Training',
+      'Leader Manager Training',
+    ],
+    description1: 'These programs, designed according to the needs and expectations of the organization, provide continuity within themselves. These trainings can also be evaluated individually according to needs and demands.',
+    description2: 'These are programs that not only benefit professionals who have just started or will start managing, but also experienced managers can both contribute with their experiences and stories and gain new insights.',
+    description3: 'In all of these programs, participants encounter examples and applications in which they will find themselves.',
+  },
+};
+
+const lang = locale as 'tr' | 'en';
+---
+
+<Layout title={title}>
+  <div class="max-w-3xl">
+    <h1 class="mb-6 text-4xl font-bold text-gray-900">{title}</h1>
+
+    <div class="space-y-6">
+      <p class="text-lg text-gray-700">{content[lang].subtitle}</p>
+
+      <div>
+        <h2 class="mb-3 text-2xl font-semibold text-gray-900">
+          {locale === 'tr' ? 'Programlarımız' : 'Our Programs'}
+        </h2>
+        <ul class="list-disc space-y-2 pl-6 text-gray-700">
+          {content[lang].programs.map((program) => (
+            <li>{program}</li>
+          ))}
+        </ul>
+      </div>
+
+      <p class="text-lg leading-relaxed text-gray-700">{content[lang].description1}</p>
+
+      <p class="text-lg leading-relaxed text-gray-700">{content[lang].description2}</p>
+
+      <p class="text-lg leading-relaxed text-gray-700">{content[lang].description3}</p>
+
+      <p class="text-lg text-gray-700">
+        {locale === 'tr'
+          ? 'Kurumunuzun ihtiyaçlarına özel programlar tasarlamak için '
+          : 'To design programs tailored to your organization\'s needs, '}
+        <a href={locale === 'tr' ? '/contact' : '/en/contact'} class="text-[#F9931F] hover:underline">
+          {locale === 'tr' ? 'bizimle iletişime geçin' : 'contact us'}
+        </a>.
+      </p>
+    </div>
+  </div>
+</Layout>

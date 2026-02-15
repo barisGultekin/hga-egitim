@@ -1,0 +1,315 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { getTranslations } from "@/i18n/utils";
+import HeroCarousel from "@/components/HeroCarousel.astro";
+import YouTubeEmbed from "@/components/YouTubeEmbed.astro";
+import TestimonialCard from "@/components/TestimonialCard.astro";
+import LogoMarquee from "@/components/LogoMarquee.astro";
+import { testimonials } from "@/data/testimonials";
+import { galleryImages } from "@/data/gallery";
+import { books } from "@/data/books";
+import { referenceLogos } from "@/data/references";
+
+const locale = Astro.currentLocale || "tr";
+const t = getTranslations(locale);
+---
+
+<Layout immersiveHeader>
+    <!-- Hero Carousel -->
+    <HeroCarousel slot="hero" locale={locale} />
+
+    <!-- Reference Customers -->
+    <section class="mb-16">
+        <h2 class="mb-8 text-2xl font-semibold text-gray-900">
+            {t.sections.references}
+        </h2>
+        <LogoMarquee logos={referenceLogos} speed={20} />
+    </section>
+
+    <!-- Testimonials -->
+    <section class="mb-16">
+        <h2 class="mb-8 text-2xl font-semibold text-gray-900">
+            {t.sections.testimonials}
+        </h2>
+        <div class="grid gap-6 md:grid-cols-3">
+            {
+                testimonials.map((testimonial) => (
+                    <TestimonialCard
+                        testimonial={testimonial}
+                        locale={locale}
+                    />
+                ))
+            }
+        </div>
+    </section>
+
+    <!-- Gallery Preview -->
+    <section class="mb-16 w-full max-w-full overflow-hidden">
+        <h2 class="mb-8 text-2xl font-semibold text-gray-900">
+            {t.sections.gallery}
+        </h2>
+        <div class="grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-4">
+            {
+                galleryImages.slice(0, 4).map((image, index) => (
+                    <div
+                        class="gallery-preview-item overflow-hidden rounded-lg"
+                        style={`animation-delay: ${index * 80}ms`}
+                    >
+                        <img
+                            src={image.src}
+                            alt={image.alt}
+                            loading="lazy"
+                            decoding="async"
+                            class="aspect-[4/3] h-auto w-full object-cover transition-transform duration-500 hover:scale-105"
+                        />
+                    </div>
+                ))
+            }
+        </div>
+        <div class="mt-6 text-center">
+            <a
+                href={locale === "tr" ? "/gallery" : "/en/gallery"}
+                class="inline-flex items-center gap-2 rounded-lg border-2 border-gray-200 px-6 py-3 font-semibold text-gray-700 transition-all hover:border-[#F9931F] hover:text-[#F9931F] hover:shadow-md"
+            >
+                {t.sections.gallerySeeAll}
+            </a>
+        </div>
+    </section>
+
+    <!-- Books -->
+    <section class="mb-16">
+        <h2 class="mb-8 text-2xl font-semibold text-gray-900">
+            {t.sections.books}
+        </h2>
+        <div class="grid gap-6 md:grid-cols-2">
+            {
+                books.map((book) => (
+                    <a
+                        href={book.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="group flex flex-col gap-4 rounded-lg border border-gray-200 p-4 transition-all hover:border-[#F9931F] hover:shadow-md sm:flex-row"
+                    >
+                        <div class="flex-shrink-0">
+                            <img
+                                src={book.image}
+                                alt={book.title}
+                                class="h-32 w-24 object-cover rounded"
+                            />
+                        </div>
+                        <div class="flex flex-col">
+                            <h3 class="mb-1 text-lg font-semibold text-gray-900 group-hover:text-[#F9931F]">
+                                {book.title}
+                            </h3>
+                            <p class="mb-2 text-sm text-gray-600">
+                                {book.author}
+                            </p>
+                            <p class="text-sm text-gray-700 line-clamp-3">
+                                {book.description[locale as "tr" | "en"]}
+                            </p>
+                        </div>
+                    </a>
+                ))
+            }
+        </div>
+    </section>
+
+    <!-- Video -->
+    <section class="mb-16">
+        <h2 class="mb-6 text-2xl font-semibold text-gray-900">
+            {t.sections.watch.title}
+        </h2>
+        <div class="grid grid-cols-1 gap-4 py-2 md:grid-cols-2">
+            <div class="space-y-2">
+                <h3 class="font-medium">{t.sections.watch.vid1}</h3>
+                <YouTubeEmbed
+                    videoId="kcEIsbO0ivA"
+                    title="TEDx - The leaders who ruined Africa"
+                />
+            </div>
+            <div class="space-y-2">
+                <h3 class="font-medium">{t.sections.watch.vid2}</h3>
+                <YouTubeEmbed
+                    videoId="VO6XEQIsCoM"
+                    title="TEDx - Paradox of Choice"
+                />
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="mb-16">
+        <h2 class="mb-8 text-2xl font-semibold text-gray-900">
+            {t.sections.contact.title}
+        </h2>
+
+        <div class="grid gap-12 lg:grid-cols-2">
+            <!-- Form -->
+            <form
+                action="https://formspree.io/f/YOUR_FORM_ID"
+                method="POST"
+                class="space-y-6"
+            >
+                <div class="grid gap-6 md:grid-cols-2">
+                    <div>
+                        <label
+                            for="name"
+                            class="mb-2 block text-sm font-semibold text-gray-700"
+                        >
+                            {t.sections.contact.name}
+                        </label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            required
+                            class="w-full rounded-lg border-2 border-gray-200 bg-white px-4 py-3 transition-all focus:border-[#F9931F] focus:outline-none focus:ring-4 focus:ring-[#F9931F]/10"
+                            placeholder={locale === "tr"
+                                ? "Adınız Soyadınız"
+                                : "Your full name"}
+                        />
+                    </div>
+
+                    <div>
+                        <label
+                            for="email"
+                            class="mb-2 block text-sm font-semibold text-gray-700"
+                        >
+                            {t.sections.contact.email}
+                        </label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            required
+                            class="w-full rounded-lg border-2 border-gray-200 bg-white px-4 py-3 transition-all focus:border-[#F9931F] focus:outline-none focus:ring-4 focus:ring-[#F9931F]/10"
+                            placeholder={locale === "tr"
+                                ? "ornek@email.com"
+                                : "example@email.com"}
+                        />
+                    </div>
+                </div>
+
+                <div>
+                    <label
+                        for="subject"
+                        class="mb-2 block text-sm font-semibold text-gray-700"
+                    >
+                        {t.sections.contact.subject}
+                    </label>
+                    <input
+                        type="text"
+                        id="subject"
+                        name="subject"
+                        required
+                        class="w-full rounded-lg border-2 border-gray-200 bg-white px-4 py-3 transition-all focus:border-[#F9931F] focus:outline-none focus:ring-4 focus:ring-[#F9931F]/10"
+                        placeholder={locale === "tr"
+                            ? "Mesajınızın konusu"
+                            : "Subject of your message"}
+                    />
+                </div>
+
+                <div>
+                    <label
+                        for="message"
+                        class="mb-2 block text-sm font-semibold text-gray-700"
+                    >
+                        {t.sections.contact.message}
+                    </label>
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="4"
+                        required
+                        class="w-full rounded-lg border-2 border-gray-200 bg-white px-4 py-3 transition-all focus:border-[#F9931F] focus:outline-none focus:ring-4 focus:ring-[#F9931F]/10"
+                        placeholder={locale === "tr"
+                            ? "Mesajınızı buraya yazın..."
+                            : "Write your message here..."}></textarea>
+                </div>
+
+                <div class="pt-2">
+                    <button
+                        type="submit"
+                        class="rounded-lg bg-[#040A23] px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:bg-[#0a1642] hover:shadow-xl active:scale-[0.98]"
+                    >
+                        {t.sections.contact.send}
+                    </button>
+                </div>
+            </form>
+
+            <!-- Contact Info & Map -->
+            <div class="space-y-6">
+                <!-- Contact Info -->
+                <div class="space-y-4">
+                    <div class="grid gap-4 sm:grid-cols-2">
+                        <div>
+                            <h3
+                                class="mb-2 text-sm font-semibold text-gray-700"
+                            >
+                                {locale === "tr" ? "Telefon" : "Phone"}
+                            </h3>
+                            <a
+                                href="tel:+905332604450"
+                                class="text-lg text-gray-900 hover:text-[#F9931F]"
+                            >
+                                0533 260 44 50
+                            </a>
+                        </div>
+                        <div>
+                            <h3
+                                class="mb-2 text-sm font-semibold text-gray-700"
+                            >
+                                {locale === "tr" ? "E-posta" : "Email"}
+                            </h3>
+                            <a
+                                href="mailto:info@hgaegitim.com"
+                                class="text-lg text-gray-900 hover:text-[#F9931F]"
+                            >
+                                info@hgaegitim.com
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="mb-2 text-sm font-semibold text-gray-700">
+                            {locale === "tr" ? "Adres" : "Address"}
+                        </h3>
+                        <p class="text-lg text-gray-900">
+                            Atakent, 243. Sk. No:6,<br />
+                            34307 Küçükçekmece/İstanbul
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Map -->
+                <a
+                    href="https://maps.app.goo.gl/6UTwo9hwoLNoWEFY7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="group block overflow-hidden rounded-lg border-2 border-gray-200 transition-all hover:border-[#F9931F]"
+                >
+                    <div class="relative h-64 bg-gray-100 md:h-80">
+                        <iframe
+                            src="https://www.openstreetmap.org/export/embed.html?bbox=28.7541888%2C41.0458652%2C28.7741888%2C41.0658652&layer=mapnik&marker=41.0558652%2C28.7641888"
+                            class="h-full w-full"
+                            style="border: 0;"
+                            loading="lazy"
+                            title="Tema Istanbul Map"></iframe>
+                        <div
+                            class="absolute inset-0 flex items-center justify-center bg-black/0 transition-all group-hover:bg-black/10"
+                        >
+                            <span
+                                class="rounded-full bg-white px-4 py-2 text-sm font-semibold opacity-0 shadow-lg transition-opacity group-hover:opacity-100"
+                            >
+                                {
+                                    locale === "tr"
+                                        ? "Haritada Görüntüle"
+                                        : "View on Map"
+                                }
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+</Layout>

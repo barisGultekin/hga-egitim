@@ -1,0 +1,64 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { testimonials, type Testimonial } from '@/data/testimonials';
+
+export function getStaticPaths() {
+  return testimonials.map((testimonial) => ({
+    params: { slug: testimonial.slug },
+    props: { testimonial },
+  }));
+}
+
+interface Props {
+  testimonial: Testimonial;
+}
+
+const { testimonial } = Astro.props;
+const locale = Astro.currentLocale || 'tr';
+
+const title = testimonial.title[locale as keyof typeof testimonial.title] || testimonial.title.tr;
+const fullText = testimonial.fullText[locale as keyof typeof testimonial.fullText] || testimonial.fullText.tr;
+
+const pageTitle = locale === 'tr'
+  ? `${testimonial.name} - Müşteri Referansı`
+  : `${testimonial.name} - Customer Testimonial`;
+
+const backText = locale === 'tr' ? 'Ana Sayfaya Dön' : 'Back to Home';
+const backHref = locale === 'en' ? '/en/' : '/';
+---
+
+<Layout title={pageTitle}>
+  <article class="max-w-3xl">
+    <!-- Back link -->
+    <a
+      href={backHref}
+      class="mb-8 inline-flex items-center text-sm text-gray-500 hover:text-gray-700"
+    >
+      <svg class="mr-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      {backText}
+    </a>
+
+    <!-- Header -->
+    <header class="mb-8 flex items-start gap-6">
+      <img
+        src={testimonial.image}
+        alt={testimonial.name}
+        class="h-24 w-24 flex-shrink-0 rounded-full object-cover ring-4 ring-gray-100"
+      />
+      <div>
+        <h1 class="text-3xl font-bold text-gray-900">{testimonial.name}</h1>
+        <p class="mt-1 text-lg text-gray-600">{title}</p>
+        <p class="text-gray-400">{testimonial.company}</p>
+      </div>
+    </header>
+
+    <!-- Testimonial content -->
+    <div class="prose prose-lg prose-gray max-w-none">
+      {fullText.split('\n\n').map((paragraph) => (
+        <p class="text-gray-700 leading-relaxed">{paragraph}</p>
+      ))}
+    </div>
+  </article>
+</Layout>

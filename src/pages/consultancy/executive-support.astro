@@ -1,0 +1,62 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const locale = Astro.currentLocale || 'tr';
+const title = locale === 'tr' ? 'Yönetici Destek Programı' : 'Executive Support Program';
+
+const content = {
+  tr: {
+    title: 'Yönetici Destek Programı',
+    description: 'Yönetici Destek Programı, kurumunuzdaki yöneticilerin liderlik becerilerini güçlendirmek, stratejik düşünme yeteneklerini geliştirmek ve yönetim performanslarını artırmak amacıyla tasarlanmış kapsamlı bir danışmanlık hizmetidir.',
+    sections: [
+      {
+        heading: 'Program İçeriği',
+        text: 'Yönetici koçluğu, bireysel gelişim planları, stratejik planlama desteği, karar alma süreçlerinde mentorluk ve performans yönetimi konularında uzman danışmanlık hizmeti sunuyoruz.',
+      },
+      {
+        heading: 'Kimler İçin',
+        text: 'Orta ve üst düzey yöneticiler, departman başkanları, proje liderleri ve yönetici adayları için tasarlanmıştır.',
+      },
+      {
+        heading: 'Faydaları',
+        text: 'Liderlik becerilerinin geliştirilmesi, ekip yönetiminde etkinlik artışı, stratejik düşünme kapasitesinin güçlendirilmesi ve kurumsal hedeflere ulaşmada daha etkili yönetim anlayışının kazandırılması.',
+      },
+    ],
+  },
+  en: {
+    title: 'Executive Support Program',
+    description: 'The Executive Support Program is a comprehensive consulting service designed to strengthen leadership skills, develop strategic thinking abilities, and increase management performance of executives in your organization.',
+    sections: [
+      {
+        heading: 'Program Content',
+        text: 'We provide executive coaching, individual development plans, strategic planning support, mentorship in decision-making processes, and expert consulting services on performance management.',
+      },
+      {
+        heading: 'For Whom',
+        text: 'Designed for middle and senior managers, department heads, project leaders, and management candidates.',
+      },
+      {
+        heading: 'Benefits',
+        text: 'Development of leadership skills, increased effectiveness in team management, strengthening of strategic thinking capacity, and acquisition of a more effective management approach in achieving corporate goals.',
+      },
+    ],
+  },
+};
+
+const t = content[locale as keyof typeof content];
+---
+
+<Layout title={title}>
+  <div class="max-w-3xl">
+    <h1 class="mb-6 text-4xl font-bold text-gray-900">{t.title}</h1>
+
+    <p class="mb-8 text-lg leading-relaxed text-gray-700">{t.description}</p>
+
+    {t.sections.map((section) => (
+      <div class="mb-6">
+        <h2 class="mb-3 text-2xl font-semibold text-gray-900">{section.heading}</h2>
+        <p class="leading-relaxed text-gray-700">{section.text}</p>
+      </div>
+    ))}
+  </div>
+</Layout>

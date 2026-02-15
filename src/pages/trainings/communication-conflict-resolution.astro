@@ -1,0 +1,82 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const locale = Astro.currentLocale || 'tr';
+const title = locale === 'tr' ? 'İletişim ve Çatışma Çözümü' : 'Communication and Conflict Resolution';
+
+const content = {
+  tr: {
+    subtitle: '"İletişim ve Çatışma Çözümü" Becerilerini geliştirmeye yönelik programlarımız:',
+    programTypes: [
+      'Aynı iş yerinde çalışan profesyonellerin birbiri ile olan ilişki ve iletişimlerini iyileştirmeye yönelik programlar,',
+      'Müşteri ile yüzyüze ya da telefonda iletişimde olan profesyonellerin, kalıcı ve anlık iletişim ve ilişki becerilerini iyileştirmeye yönelik programlar,',
+      'Yöneticilerin, kendilerine bağlı çalışanlar ile ilişkilerini ve iletişimlerini iyileştirmeye yönelik programlar olarak düzenlenir.',
+    ],
+    customization: 'Bu programlar, kurumun ihtiyacı dinlendikten sonra, ihtiyaca uygun içerik ve düzende yapılandırılıp, sunulur.',
+    enrichmentTitle: 'İletişim, çatışma çözümü ve ilişki becerilerine yönelik bu programlarımız; birçok',
+    enrichmentItems: [
+      'oyun,',
+      'uygulama,',
+      'video klip ve',
+      'tartışma ortamı ile zenginleştirilmiş,',
+    ],
+    enrichmentOutro: 'yaşanmış örnekler üzerinden gidilerek planlanmış programlardır.',
+    conclusion: 'Bu programlar, katılımcının, keyifle ve inanarak orada bulunduğu bir eğitim ortamı önceliği ile hazırlanmıştır.',
+  },
+  en: {
+    subtitle: 'Our Programs for Developing "Communication and Conflict Resolution" Skills:',
+    programTypes: [
+      'Programs to improve relationships and communication between professionals working in the same workplace,',
+      'Programs to improve lasting and immediate communication and relationship skills of professionals who communicate with customers face-to-face or by phone,',
+      'Programs designed to improve managers\' relationships and communication with their subordinates.',
+    ],
+    customization: 'These programs are structured and delivered with appropriate content and format after listening to the organization\'s needs.',
+    enrichmentTitle: 'These programs for communication, conflict resolution, and relationship skills are enriched with many',
+    enrichmentItems: [
+      'games,',
+      'applications,',
+      'video clips, and',
+      'discussion environments,',
+    ],
+    enrichmentOutro: 'and are planned through real-life examples.',
+    conclusion: 'These programs are prepared with the priority of creating a training environment where participants are present with pleasure and conviction.',
+  },
+};
+
+const lang = locale as 'tr' | 'en';
+---
+
+<Layout title={title}>
+  <div class="max-w-3xl">
+    <h1 class="mb-6 text-4xl font-bold text-gray-900">{title}</h1>
+
+    <div class="space-y-6">
+      <p class="text-lg text-gray-700">{content[lang].subtitle}</p>
+
+      <ul class="list-disc space-y-2 pl-6 text-gray-700">
+        {content[lang].programTypes.map((type) => (
+          <li>{type}</li>
+        ))}
+      </ul>
+
+      <p class="text-lg leading-relaxed text-gray-700">{content[lang].customization}</p>
+
+      <p class="text-lg leading-relaxed text-gray-700">
+        {content[lang].enrichmentTitle}
+        {content[lang].enrichmentItems.join(' ')}
+        {content[lang].enrichmentOutro}
+      </p>
+
+      <p class="text-lg leading-relaxed text-gray-700">{content[lang].conclusion}</p>
+
+      <p class="text-lg text-gray-700">
+        {locale === 'tr'
+          ? 'Kurumunuzun ihtiyaçlarına özel programlar tasarlamak için '
+          : 'To design programs tailored to your organization\'s needs, '}
+        <a href={locale === 'tr' ? '/contact' : '/en/contact'} class="text-[#F9931F] hover:underline">
+          {locale === 'tr' ? 'bizimle iletişime geçin' : 'contact us'}
+        </a>.
+      </p>
+    </div>
+  </div>
+</Layout>

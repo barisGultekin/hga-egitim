@@ -1,0 +1,49 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const locale = Astro.currentLocale || 'tr';
+const title = locale === 'tr' ? 'İletişim' : 'Contact';
+
+const content = {
+  tr: {
+    title: 'İletişim',
+    heading: 'Bizimle İletişime Geçin',
+    description: 'Eğitim ve danışmanlık hizmetlerimiz hakkında detaylı bilgi almak veya sorularınız için bizimle iletişime geçebilirsiniz.',
+    phone: 'Telefon',
+    email: 'E-posta',
+  },
+  en: {
+    title: 'Contact',
+    heading: 'Get in Touch',
+    description: 'Contact us for detailed information about our training and consulting services or for your questions.',
+    phone: 'Phone',
+    email: 'Email',
+  },
+};
+
+const t = content[locale as keyof typeof content];
+---
+
+<Layout title={title}>
+  <div class="max-w-3xl">
+    <h1 class="mb-6 text-4xl font-bold text-gray-900">{t.heading}</h1>
+
+    <p class="mb-8 text-lg leading-relaxed text-gray-700">{t.description}</p>
+
+    <div class="space-y-4">
+      <div>
+        <h2 class="mb-2 text-xl font-semibold text-gray-900">{t.phone}</h2>
+        <a href="tel:+905332604450" class="text-lg text-[#F9931F] hover:underline">
+          0533 260 44 50
+        </a>
+      </div>
+
+      <div>
+        <h2 class="mb-2 text-xl font-semibold text-gray-900">{t.email}</h2>
+        <a href="mailto:info@hgaegitim.com" class="text-lg text-[#F9931F] hover:underline">
+          info@hgaegitim.com
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>

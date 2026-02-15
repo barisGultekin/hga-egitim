@@ -1,0 +1,62 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const locale = Astro.currentLocale || 'en';
+const title = 'Being a Team';
+
+const content = {
+  tr: {
+    title: 'Takım Olabilmek',
+    description: 'Başarılı bir takım, farklı yeteneklere sahip bireylerin ortak bir hedef etrafında bir araya gelmesiyle oluşur. Takım Olabilmek danışmanlık programımız, ekiplerinizin sinerjisini artırarak birlikte daha fazlasını başarmalarını sağlar.',
+    sections: [
+      {
+        heading: 'Program İçeriği',
+        text: 'Takım dinamikleri analizi, rol ve sorumluluk netleştirme, güven inşası, etkili takım iletişimi, ortak hedef belirleme, takım çatışmalarının yönetimi ve takım performansının ölçümlenmesi konularında danışmanlık hizmeti sunuyoruz.',
+      },
+      {
+        heading: 'Uygulama Alanları',
+        text: 'Yeni oluşturulan takımlar, mevcut takımların performans artışı, birleşme ve satın almalarda entegrasyon süreçleri ve projeler arası koordinasyon ihtiyaçları için uygundur.',
+      },
+      {
+        heading: 'Sağlanan Değer',
+        text: 'Takım ruhu ve aidiyetin güçlendirilmesi, iş birliği ve koordinasyonda iyileşme, takım performansında artış ve ortak hedeflere ulaşmada kolektif başarı sağlanır.',
+      },
+    ],
+  },
+  en: {
+    title: 'Being a Team',
+    description: 'A successful team is formed when individuals with different talents come together around a common goal. Our Being a Team consulting program enables your teams to achieve more together by increasing their synergy.',
+    sections: [
+      {
+        heading: 'Program Content',
+        text: 'We provide consulting services on team dynamics analysis, clarifying roles and responsibilities, building trust, effective team communication, setting common goals, managing team conflicts, and measuring team performance.',
+      },
+      {
+        heading: 'Application Areas',
+        text: 'Suitable for newly formed teams, performance improvement of existing teams, integration processes in mergers and acquisitions, and cross-project coordination needs.',
+      },
+      {
+        heading: 'Value Delivered',
+        text: 'Strengthening team spirit and belonging, improvement in collaboration and coordination, increase in team performance, and collective success in achieving common goals.',
+      },
+    ],
+  },
+};
+
+const t = content[locale as keyof typeof content];
+---
+
+<Layout title={title}>
+  <div class="max-w-3xl">
+    <h1 class="mb-6 text-4xl font-bold text-gray-900">{t.title}</h1>
+
+    <p class="mb-8 text-lg leading-relaxed text-gray-700">{t.description}</p>
+
+    {t.sections.map((section) => (
+      <div class="mb-6">
+        <h2 class="mb-3 text-2xl font-semibold text-gray-900">{section.heading}</h2>
+        <p class="leading-relaxed text-gray-700">{section.text}</p>
+      </div>
+    ))}
+  </div>
+</Layout>

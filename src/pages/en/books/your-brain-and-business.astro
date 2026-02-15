@@ -1,0 +1,56 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const locale = Astro.currentLocale || 'tr';
+const title = 'Your Brain and Business - Srinivasan S. Pillay';
+---
+
+<Layout title={title}>
+  <div class="max-w-3xl">
+    <div class="mb-8 flex flex-col md:flex-row gap-6">
+      <div class="flex-shrink-0">
+        <img
+          src="/books/your-brain-and-business.jpg"
+          alt="Your Brain and Business"
+          class="h-64 w-48 object-cover rounded-lg shadow-md"
+        />
+      </div>
+      <div>
+        <h1 class="mb-2 text-4xl font-bold text-gray-900">Your Brain and Business</h1>
+        <p class="mb-1 text-xl text-gray-600">The Neuroscience of Great Leaders</p>
+        <p class="mb-4 text-lg text-gray-600">Srinivasan S. Pillay</p>
+        <div class="space-y-2">
+          <a
+            href="https://www.goodreads.com/book/show/9789421-your-brain-and-business"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block text-[#F9931F] hover:underline"
+          >
+            View on Goodreads →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-6 text-lg leading-relaxed text-gray-700">
+      <p>
+        Harvard psychiatrist and executive coach Srinivasan S. Pillay illuminates the rapidly-emerging links between modern brain science and the corner office. What does neuroscience have to do with leadership? Everything. In Your Brain and Business: The Neuroscience of Great Leaders, Phillay discusses recent advances in brain science and neuroimaging and how they can dramatically improve the way leaders work with colleagues to drive successful change. As the brain is increasingly examined in the context of personal and organizational development, remarkable insights are being uncovered: insights that are leading to powerful new strategies for improving business execution.
+      </p>
+
+      <p>
+        Pillay reveals six ways that brain science can be used by today's executives, and presents new interventions for coaches who want to help their clients overcome common leadership problems. Discover how to:
+      </p>
+
+      <ul class="list-disc space-y-2 pl-6">
+        <li>Use positive, "strengths-based" approaches to encourage the brain to learn</li>
+        <li>Encourage more effective relationships through the fascinating neuroscience of social intelligence</li>
+        <li>Promote innovation and intuition, and overcome intangible vulnerabilities in leaders' brains</li>
+        <li>Transform the "idea" of change into crisp, timely execution</li>
+      </ul>
+
+      <p>
+        Leaders and coaches worldwide are already applying this knowledge to dramatically improve personal performance. Now, with Pillay's help, everyone can.
+      </p>
+    </div>
+  </div>
+</Layout>

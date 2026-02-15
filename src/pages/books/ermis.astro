@@ -1,0 +1,46 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const locale = Astro.currentLocale || 'tr';
+const title = 'Ermiş - Halil Cibran';
+---
+
+<Layout title={title}>
+  <div class="max-w-3xl">
+    <div class="mb-8 flex flex-col md:flex-row gap-6">
+      <div class="flex-shrink-0">
+        <img
+          src="/books/ermis.jpg"
+          alt="Ermiş"
+          class="h-64 w-48 object-cover rounded-lg shadow-md"
+        />
+      </div>
+      <div>
+        <h1 class="mb-2 text-4xl font-bold text-gray-900">Ermiş</h1>
+        <p class="mb-4 text-xl text-gray-600">Halil Cibran</p>
+        <div class="space-y-2">
+          <a
+            href="https://www.amazon.com.tr/Ermi%C5%9F-Halil-Cibran/dp/6059800262"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block text-[#F9931F] hover:underline"
+          >
+            Amazon'dan satın alın →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-6 text-lg leading-relaxed text-gray-700">
+      <blockquote class="border-l-4 border-[#F9931F] pl-6 italic">
+        <p>
+          "Sizin diye bildiğiniz evlatlar gerçekte sizlerin değildirler, Onlar kendini özleyen Hayat'ın oğulları ve kızlarıdırlar. Sizler aracılığıyla dünyaya gelmişlerdir. Onlara sevginizi verebilirsiniz ama düşüncelerinizi asla. Çünkü onların kendi düşünceleri vardır. Onların vücutlarını çalabilirsiniz ama canlarını asla. Çünkü onların canları geleceğin sarayında oturur ve sizler düşlerinizde bile orayı ziyaret edemezsiniz. Kendinizi onlara benzetmeye çalışabilirsiniz ama onları kendinize benzetmeye kalkışmayın hiç. Çünkü Hayat ne geriye gider ne de geçmişle ilgilenir."
+        </p>
+      </blockquote>
+
+      <p>
+        Mustafa'nın ağzından, yakın zaman filozofu Cibran'ın, günümüz hayatını dolduran kurumlara bakışını anlatan bir eser. Az sayfalı bu kitabı okumak için, geniş ve dingin zamanlar ayırmanızı öneririm.
+      </p>
+    </div>
+  </div>
+</Layout>

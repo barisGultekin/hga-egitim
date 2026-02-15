@@ -1,23 +1,61 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+import { getTranslations } from "../i18n/utils";
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+interface Props {
+  title?: string;
+  fullWidth?: boolean;
+  immersiveHeader?: boolean;
+}
+
+const locale = Astro.currentLocale || "tr";
+const t = getTranslations(locale);
+const {
+  title = t.site.title,
+  fullWidth = false,
+  immersiveHeader = false,
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="/hga-favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/hga-favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/hga-favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/hga-favicon/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="HGA Eğitim" />
+    <link rel="manifest" href="/hga-favicon/site.webmanifest" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={t.site.description} />
+    <title>{title}</title>
+  </head>
+  <body class="flex min-h-[120vh] flex-col bg-gray-50 text-gray-900">
+    <Header locale={locale} immersive={immersiveHeader} />
+    <!-- Full-width slot for hero sections -->
+    <slot name="hero" />
+    <main
+      class:list={[
+        "flex-1",
+        fullWidth ? "" : "mx-auto max-w-6xl px-6 py-8 md:py-16",
+        !immersiveHeader && "pt-24 md:pt-32",
+      ]}
+    >
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

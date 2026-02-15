@@ -1,0 +1,138 @@
+---
+import { getTranslations } from "@/i18n/utils";
+
+const locale = Astro.currentLocale || "tr";
+const t = getTranslations(locale);
+
+const currentYear = new Date().getFullYear();
+
+const externalLinks = [
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/in/handan-gultekin-aktug-7087833a9/",
+    icon: "/links/linkedin.svg",
+  },
+  {
+    name: "ORCID",
+    href: "https://orcid.org/0000-0001-9063-3888",
+    icon: "/links/orcid.svg",
+  },
+  {
+    name: locale === "tr" ? "Yayınları" : "Publications",
+    href: "https://www.nobelyayin.com/yazar-handan-gultekin-aktug-32304/",
+    icon: "/links/publisher.svg",
+  },
+];
+
+const quickLinks = [
+  {
+    title: locale === "tr" ? "Hakkımızda" : "About Us",
+    href: locale === "tr" ? "/about" : "/en/about",
+  },
+  {
+    title: locale === "tr" ? "Eğitimlerimiz" : "Our Trainings",
+    href: locale === "tr" ? "/trainings" : "/en/trainings",
+  },
+  {
+    title: locale === "tr" ? "Danışmanlık" : "Consultancy",
+    href: locale === "tr" ? "/consultancy" : "/en/consultancy",
+  },
+  {
+    title: locale === "tr" ? "İletişim" : "Contact",
+    href: locale === "tr" ? "/contact" : "/en/contact",
+  },
+];
+---
+
+<footer class="border-t border-gray-200 bg-white">
+  <div class="container mx-auto px-6 py-12">
+    <div class="grid gap-8 md:grid-cols-3 md:gap-12">
+      <!-- Logo & Tagline -->
+      <div class="col-span-1">
+        <div class="flex items-center gap-4">
+          <img
+            src="/hga-logo/hga-light.svg"
+            alt="HGA"
+            class="h-8 w-auto md:h-10"
+          />
+          <div class="h-8 w-px bg-[#F9931F] md:h-10"></div>
+          <div class="text-xs font-medium text-gray-700 md:text-sm">
+            {
+              locale === "tr"
+                ? "Eğitim & Danışmanlık"
+                : "Education & Consultancy"
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-span-1">
+        <h3 class="mb-4 text-sm font-semibold text-gray-900">
+          {locale === "tr" ? "Hızlı Bağlantılar" : "Quick Links"}
+        </h3>
+        <ul class="space-y-2">
+          {
+            quickLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="text-sm text-gray-600 transition-colors hover:text-[#F9931F]"
+                >
+                  {link.title}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Contact & Social -->
+      <div class="col-span-1">
+        <h3 class="mb-4 text-sm font-semibold text-gray-900">
+          {locale === "tr" ? "İletişim" : "Contact"}
+        </h3>
+        <div class="mb-4 space-y-2 text-sm text-gray-600">
+          <p>
+            <a href="tel:+905332604450" class="hover:text-[#F9931F]">
+              0533 260 44 50
+            </a>
+          </p>
+          <p>
+            <a href="mailto:info@hgaegitim.com" class="hover:text-[#F9931F]">
+              info@hgaegitim.com
+            </a>
+          </p>
+        </div>
+        <div class="flex gap-4">
+          {
+            externalLinks.map((link) => (
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group transition-transform hover:scale-110"
+                aria-label={link.name}
+              >
+                <img
+                  src={link.icon}
+                  alt={link.name}
+                  class="h-6 w-6 opacity-60 transition-opacity group-hover:opacity-100"
+                />
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div
+      class="mt-8 border-t border-gray-200 pt-8 text-center text-sm text-gray-500"
+    >
+      © {currentYear} HGA Eğitim & Danışmanlık. {
+        locale === "tr" ? "Tüm hakları saklıdır." : "All rights reserved."
+      }
+    </div>
+  </div>
+</footer>

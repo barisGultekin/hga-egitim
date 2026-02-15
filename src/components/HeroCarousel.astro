@@ -1,0 +1,406 @@
+---
+import { heroSlides, type HeroSlide } from '@/data/heroSlides';
+
+interface Props {
+  locale: string;
+}
+
+const { locale } = Astro.props;
+const lang = locale as 'tr' | 'en';
+---
+
+<section class="hero-carousel relative h-[85vh] min-h-[600px] w-full overflow-hidden bg-gray-900 md:h-screen md:min-h-[600px]">
+  <!-- Background Images -->
+  {heroSlides.map((slide, index) => (
+    <div
+      class:list={[
+        'hero-slide absolute inset-0 transition-opacity duration-700 ease-in-out',
+        index === 0 ? 'opacity-100' : 'opacity-0',
+      ]}
+      data-slide-index={index}
+    >
+      <img
+        src={slide.image}
+        alt={slide.title[lang]}
+        class="h-full w-full object-cover"
+        loading={index === 0 ? 'eager' : 'lazy'}
+      />
+      <!-- Gradient Overlay -->
+      <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
+    </div>
+  ))}
+
+  <!-- Content Overlay -->
+  <div class="absolute inset-0 flex flex-col justify-between">
+    <!-- Main Content Area -->
+    <div class="flex flex-1 items-center pb-12 md:pb-0">
+      <div class="mx-auto w-full max-w-6xl px-6 md:px-8">
+        <div class="relative w-full">
+          {heroSlides.map((slide, index) => (
+            <div
+              class:list={[
+                'hero-content max-w-2xl transition-all duration-500',
+                index === 0 ? 'opacity-100 translate-y-0 relative z-10' : 'opacity-0 translate-y-4 pointer-events-none absolute inset-0',
+              ]}
+              data-content-index={index}
+            >
+            <!-- Category Label -->
+            <span class="mb-3 inline-block text-xs font-semibold tracking-widest text-[#F9931F] md:mb-4 md:text-sm">
+              {slide.category[lang]}
+            </span>
+
+            <!-- Headline -->
+            <h1 class="mb-4 text-2xl font-bold leading-tight text-white sm:text-3xl md:mb-6 md:text-5xl lg:text-6xl">
+              {slide.title[lang]}
+            </h1>
+
+            <!-- Description with left accent border -->
+            <div class="border-l-4 border-[#F9931F] pl-4">
+              <p class="text-base text-gray-200 md:text-xl">
+                {slide.description[lang]}
+              </p>
+            </div>
+
+            <!-- CTA Button -->
+            {slide.link && (
+              <a
+                href={locale === 'en' ? `/en${slide.link}` : slide.link}
+                class="mt-6 inline-flex items-center gap-2 bg-[#F9931F] px-5 py-2.5 text-sm font-semibold text-gray-900 transition-colors hover:bg-[#FAA93F] md:mt-8 md:px-6 md:py-3 md:text-base"
+              >
+                {locale === 'tr' ? 'Daha Fazla' : 'Learn More'}
+                <svg class="h-4 w-4 md:h-5 md:w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+              </a>
+            )}
+          </div>
+        ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="relative z-20 bg-gradient-to-t from-black/80 to-transparent pb-8 pt-12 md:pb-6">
+      <div class="mx-auto flex w-full max-w-6xl items-end justify-center px-4 md:justify-between md:px-8">
+        <!-- Tab Navigation (hidden on mobile) -->
+        <div class="hidden md:flex md:flex-wrap md:gap-2">
+          {heroSlides.map((slide, index) => (
+            <button
+              class:list={[
+                'hero-tab group relative px-3 py-2 text-sm font-medium transition-colors md:px-4 md:text-base',
+                index === 0 ? 'text-white' : 'text-gray-400 hover:text-gray-200',
+              ]}
+              data-tab-index={index}
+              aria-label={`Go to slide ${index + 1}: ${slide.category[lang]}`}
+            >
+              <span class="relative z-10">{slide.category[lang]}</span>
+              <!-- Active indicator bar -->
+              <div
+                class:list={[
+                  'absolute bottom-0 left-0 h-0.5 bg-[#F9931F] transition-all duration-300',
+                  index === 0 ? 'w-full' : 'w-0 group-hover:w-full',
+                ]}
+                data-tab-indicator={index}
+              ></div>
+            </button>
+          ))}
+        </div>
+
+        <!-- Controls -->
+        <div class="flex items-center gap-2">
+          <!-- Previous Button -->
+          <button
+            class="hero-prev flex h-10 w-10 items-center justify-center rounded-full border border-white/30 text-white transition-colors hover:bg-white/10 md:h-12 md:w-12"
+            aria-label={locale === 'tr' ? 'Önceki slayt' : 'Previous slide'}
+          >
+            <svg class="h-4 w-4 md:h-5 md:w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+
+          <!-- Next Button -->
+          <button
+            class="hero-next flex h-10 w-10 items-center justify-center rounded-full border border-white/30 text-white transition-colors hover:bg-white/10 md:h-12 md:w-12"
+            aria-label={locale === 'tr' ? 'Sonraki slayt' : 'Next slide'}
+          >
+            <svg class="h-4 w-4 md:h-5 md:w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
+
+          <!-- Pause/Play Button -->
+          <button
+            class="hero-pause flex h-10 w-10 items-center justify-center rounded-full border border-white/30 text-white transition-colors hover:bg-white/10 md:h-12 md:w-12"
+            aria-label={locale === 'tr' ? 'Otomatik kaydırmayı duraklat' : 'Pause autoplay'}
+            data-paused="false"
+          >
+            <!-- Pause Icon -->
+            <svg class="pause-icon h-4 w-4 md:h-5 md:w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6"></path>
+            </svg>
+            <!-- Play Icon (hidden by default) -->
+            <svg class="play-icon hidden h-4 w-4 md:h-5 md:w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Entrance animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hero-content span {
+    animation: fadeInUp 0.6s ease-out 0.2s both;
+  }
+
+  .hero-content h1 {
+    animation: fadeInUp 0.6s ease-out 0.4s both;
+  }
+
+  .hero-content .border-l-4 {
+    animation: fadeInUp 0.6s ease-out 0.6s both;
+  }
+
+  .hero-content a {
+    animation: fadeInUp 0.6s ease-out 0.8s both;
+  }
+
+  /* Smooth transitions for parallax */
+  .hero-slide img {
+    transition: transform 0.1s linear;
+    will-change: transform;
+  }
+
+  .hero-carousel .flex.flex-1 {
+    transition: opacity 0.1s linear, transform 0.1s linear;
+    will-change: opacity, transform;
+  }
+</style>
+
+<script>
+  class HeroCarousel {
+    private currentIndex = 0;
+    private slideCount = 0;
+    private autoplayInterval: ReturnType<typeof setInterval> | null = null;
+    private isPaused = false;
+    private readonly AUTOPLAY_DELAY = 6000;
+
+    private slides: NodeListOf<Element>;
+    private contents: NodeListOf<Element>;
+    private tabs: NodeListOf<Element>;
+    private indicators: NodeListOf<Element>;
+    private prevBtn: HTMLElement | null;
+    private nextBtn: HTMLElement | null;
+    private pauseBtn: HTMLElement | null;
+
+    constructor() {
+      this.slides = document.querySelectorAll('.hero-slide');
+      this.contents = document.querySelectorAll('.hero-content');
+      this.tabs = document.querySelectorAll('.hero-tab');
+      this.indicators = document.querySelectorAll('[data-tab-indicator]');
+      this.prevBtn = document.querySelector('.hero-prev');
+      this.nextBtn = document.querySelector('.hero-next');
+      this.pauseBtn = document.querySelector('.hero-pause');
+      this.slideCount = this.slides.length;
+
+      this.init();
+    }
+
+    private init() {
+      // Tab click handlers
+      this.tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => this.goToSlide(index));
+      });
+
+      // Arrow handlers
+      this.prevBtn?.addEventListener('click', () => this.prev());
+      this.nextBtn?.addEventListener('click', () => this.next());
+
+      // Pause/Play handler
+      this.pauseBtn?.addEventListener('click', () => this.togglePause());
+
+      // Start autoplay
+      this.startAutoplay();
+
+      // Pause on hover (optional - uncomment if desired)
+      // const carousel = document.querySelector('.hero-carousel');
+      // carousel?.addEventListener('mouseenter', () => this.pause());
+      // carousel?.addEventListener('mouseleave', () => this.resume());
+    }
+
+    private goToSlide(index: number) {
+      if (index === this.currentIndex) return;
+
+      // Update slides
+      this.slides.forEach((slide, i) => {
+        slide.classList.toggle('opacity-100', i === index);
+        slide.classList.toggle('opacity-0', i !== index);
+      });
+
+      // Update content
+      this.contents.forEach((content, i) => {
+        if (i === index) {
+          content.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none', 'absolute', 'inset-0');
+          content.classList.add('opacity-100', 'translate-y-0', 'relative', 'z-10');
+        } else {
+          content.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none', 'absolute', 'inset-0');
+          content.classList.remove('opacity-100', 'translate-y-0', 'relative', 'z-10');
+        }
+      });
+
+      // Update tabs
+      this.tabs.forEach((tab, i) => {
+        tab.classList.toggle('text-white', i === index);
+        tab.classList.toggle('text-gray-400', i !== index);
+      });
+
+      // Update indicators
+      this.indicators.forEach((indicator, i) => {
+        indicator.classList.toggle('w-full', i === index);
+        indicator.classList.toggle('w-0', i !== index);
+      });
+
+      this.currentIndex = index;
+
+      // Reset autoplay timer
+      if (!this.isPaused) {
+        this.startAutoplay();
+      }
+    }
+
+    private next() {
+      const nextIndex = (this.currentIndex + 1) % this.slideCount;
+      this.goToSlide(nextIndex);
+    }
+
+    private prev() {
+      const prevIndex = (this.currentIndex - 1 + this.slideCount) % this.slideCount;
+      this.goToSlide(prevIndex);
+    }
+
+    private startAutoplay() {
+      this.stopAutoplay();
+      if (!this.isPaused) {
+        this.autoplayInterval = setInterval(() => this.next(), this.AUTOPLAY_DELAY);
+      }
+    }
+
+    private stopAutoplay() {
+      if (this.autoplayInterval) {
+        clearInterval(this.autoplayInterval);
+        this.autoplayInterval = null;
+      }
+    }
+
+    private togglePause() {
+      this.isPaused = !this.isPaused;
+
+      const pauseIcon = this.pauseBtn?.querySelector('.pause-icon');
+      const playIcon = this.pauseBtn?.querySelector('.play-icon');
+
+      if (this.isPaused) {
+        this.stopAutoplay();
+        pauseIcon?.classList.add('hidden');
+        playIcon?.classList.remove('hidden');
+        this.pauseBtn?.setAttribute('data-paused', 'true');
+      } else {
+        this.startAutoplay();
+        pauseIcon?.classList.remove('hidden');
+        playIcon?.classList.add('hidden');
+        this.pauseBtn?.setAttribute('data-paused', 'false');
+      }
+    }
+
+    private pause() {
+      if (!this.isPaused) {
+        this.stopAutoplay();
+      }
+    }
+
+    private resume() {
+      if (!this.isPaused) {
+        this.startAutoplay();
+      }
+    }
+  }
+
+  // Scroll-based animations for immersive effect
+  class HeroScrollEffects {
+    private heroSection: HTMLElement | null;
+    private heroContent: HTMLElement | null;
+    private heroSlides: NodeListOf<Element>;
+    private ticking = false;
+
+    constructor() {
+      this.heroSection = document.querySelector('.hero-carousel');
+      this.heroContent = document.querySelector('.hero-carousel .flex.flex-1');
+      this.heroSlides = document.querySelectorAll('.hero-slide img');
+
+      this.init();
+    }
+
+    private init() {
+      if (!this.heroSection) return;
+
+      window.addEventListener('scroll', () => this.onScroll(), { passive: true });
+      this.onScroll(); // Initial call
+    }
+
+    private onScroll() {
+      if (!this.ticking) {
+        window.requestAnimationFrame(() => {
+          this.updateEffects();
+          this.ticking = false;
+        });
+        this.ticking = true;
+      }
+    }
+
+    private updateEffects() {
+      if (!this.heroSection) return;
+
+      const scrollY = window.scrollY;
+      const heroHeight = this.heroSection.offsetHeight;
+      const scrollProgress = Math.min(scrollY / heroHeight, 1);
+
+      // Parallax effect on background images (slower scroll)
+      this.heroSlides.forEach((img) => {
+        const element = img as HTMLElement;
+        element.style.transform = `translateY(${scrollY * 0.3}px) scale(${1 + scrollProgress * 0.1})`;
+      });
+
+      // Fade and move content up as user scrolls
+      if (this.heroContent) {
+        const opacity = Math.max(1 - scrollProgress * 1.5, 0);
+        const translateY = scrollY * 0.5;
+        this.heroContent.style.opacity = String(opacity);
+        this.heroContent.style.transform = `translateY(${translateY}px)`;
+      }
+    }
+  }
+
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    new HeroCarousel();
+    new HeroScrollEffects();
+  });
+
+  // Also handle Astro page transitions
+  document.addEventListener('astro:page-load', () => {
+    new HeroCarousel();
+    new HeroScrollEffects();
+  });
+</script>

@@ -1,0 +1,29 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import MasonryGallery from "@/components/MasonryGallery.astro";
+import { galleryImages } from "@/data/gallery";
+
+const locale = Astro.currentLocale || "tr";
+const title = locale === "tr" ? "Galeri" : "Gallery";
+const description =
+    locale === "tr"
+        ? "HGA Eğitim etkinlik ve eğitim fotoğrafları"
+        : "HGA Training event and training photos";
+---
+
+<Layout title={title}>
+    <!-- Page Header -->
+    <div class="mb-12">
+        <h1 class="mb-4 text-4xl font-bold text-gray-900">
+            {title}
+        </h1>
+        <p class="text-lg text-gray-600">
+            {description}
+        </p>
+    </div>
+
+    <!-- Full Gallery -->
+    <section class="mb-16">
+        <MasonryGallery images={galleryImages} />
+    </section>
+</Layout>

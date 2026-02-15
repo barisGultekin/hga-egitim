@@ -1,0 +1,46 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const locale = Astro.currentLocale || 'tr';
+const title = 'The Prophet - Khalil Gibran';
+---
+
+<Layout title={title}>
+  <div class="max-w-3xl">
+    <div class="mb-8 flex flex-col md:flex-row gap-6">
+      <div class="flex-shrink-0">
+        <img
+          src="/books/ermis.jpg"
+          alt="The Prophet"
+          class="h-64 w-48 object-cover rounded-lg shadow-md"
+        />
+      </div>
+      <div>
+        <h1 class="mb-2 text-4xl font-bold text-gray-900">The Prophet (Ermiş)</h1>
+        <p class="mb-4 text-xl text-gray-600">Khalil Gibran</p>
+        <div class="space-y-2">
+          <a
+            href="https://www.amazon.com.tr/Ermi%C5%9F-Halil-Cibran/dp/6059800262"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block text-[#F9931F] hover:underline"
+          >
+            Buy on Amazon →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-6 text-lg leading-relaxed text-gray-700">
+      <blockquote class="border-l-4 border-[#F9931F] pl-6 italic">
+        <p>
+          "Your children are not your children. They are the sons and daughters of Life's longing for itself. They come through you but not from you, And though they are with you yet they belong not to you. You may give them your love but not your thoughts, For they have their own thoughts. You may house their bodies but not their souls, For their souls dwell in the house of tomorrow, which you cannot visit, not even in your dreams. You may strive to be like them, but seek not to make them like you. For life goes not backward nor tarries with yesterday."
+        </p>
+      </blockquote>
+
+      <p>
+        A timeless work by philosopher Khalil Gibran, presenting his views on the institutions that fill modern life through the voice of the Prophet Mustafa. I recommend setting aside ample and peaceful time to read this brief yet profound book.
+      </p>
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,56 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const locale = Astro.currentLocale || 'tr';
+const title = 'Your Brain and Business - Srinivasan S. Pillay';
+---
+
+<Layout title={title}>
+  <div class="max-w-3xl">
+    <div class="mb-8 flex flex-col md:flex-row gap-6">
+      <div class="flex-shrink-0">
+        <img
+          src="/books/your-brain-and-business.jpg"
+          alt="Your Brain and Business"
+          class="h-64 w-48 object-cover rounded-lg shadow-md"
+        />
+      </div>
+      <div>
+        <h1 class="mb-2 text-4xl font-bold text-gray-900">Your Brain and Business</h1>
+        <p class="mb-1 text-xl text-gray-600">The Neuroscience of Great Leaders</p>
+        <p class="mb-4 text-lg text-gray-600">Srinivasan S. Pillay</p>
+        <div class="space-y-2">
+          <a
+            href="https://www.goodreads.com/book/show/9789421-your-brain-and-business"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block text-[#F9931F] hover:underline"
+          >
+            Goodreads'te incele →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-6 text-lg leading-relaxed text-gray-700">
+      <p>
+        Harvard psikiyatristi ve yönetici koçu Srinivasan S. Pillay, modern beyin bilimi ile liderlik arasında hızla gelişen bağlantıları aydınlatıyor. Nörobilimin liderlikle ne ilgisi var? Her şey. Your Brain and Business: The Neuroscience of Great Leaders kitabında Pillay, beyin bilimi ve nörogörüntüleme alanındaki son gelişmeleri ve bunların liderlerin meslektaşlarıyla birlikte başarılı değişimi nasıl sağlayabileceğini dramatik bir şekilde iyileştirebileceğini tartışıyor. Beyin, kişisel ve örgütsel gelişim bağlamında giderek daha fazla incelendikçe, dikkat çekici içgörüler ortaya çıkıyor: iş yürütmeyi iyileştirmek için güçlü yeni stratejilere yol açan içgörüler.
+      </p>
+
+      <p>
+        Pillay, beyin biliminin günümüz yöneticileri tarafından kullanılabileceği altı yolu ortaya koyuyor ve koçların müşterilerinin yaygın liderlik sorunlarını aşmalarına yardımcı olmak için yeni müdahaleler sunuyor. Nasıl yapılacağını keşfedin:
+      </p>
+
+      <ul class="list-disc space-y-2 pl-6">
+        <li>Beynin öğrenmesini teşvik etmek için olumlu, "güçlü yönlere dayalı" yaklaşımlar kullanın</li>
+        <li>Sosyal zekanın büyüleyici nörobilimi aracılığıyla daha etkili ilişkileri teşvik edin</li>
+        <li>Yenilik ve sezgiyi teşvik edin ve liderlerin beyinlerindeki soyut zayıflıkların üstesinden gelin</li>
+        <li>Değişim "fikrini" net ve zamanında uygulamaya dönüştürün</li>
+      </ul>
+
+      <p>
+        Dünya çapındaki liderler ve koçlar, kişisel performansı önemli ölçüde iyileştirmek için bu bilgiyi zaten uyguluyor. Şimdi Pillay'ın yardımıyla herkes yapabilir.
+      </p>
+    </div>
+  </div>
+</Layout>

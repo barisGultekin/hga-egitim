@@ -1,0 +1,46 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const locale = Astro.currentLocale || 'en';
+const title = 'About Us';
+
+const content = {
+  tr: {
+    title: 'Hakkımızda',
+    description: 'HGA Eğitim ve Danışmanlık, 2012 yılından bu yana kurumsal eğitim ve danışmanlık hizmetleri sunmaktadır. Profesyonel ekibimiz ve kapsamlı programlarımızla, kurumların ve bireylerin gelişimine katkı sağlamaktayız.',
+    links: [
+      { title: 'Biz Kimiz', href: '/about/who-we-are' },
+      { title: 'Ne Yapıyoruz', href: '/about/what-we-do' },
+      { title: 'Neden HGA', href: '/about/why-hga' },
+    ],
+  },
+  en: {
+    title: 'About Us',
+    description: 'HGA Training and Consulting has been providing corporate training and consulting services since 2012. With our professional team and comprehensive programs, we contribute to the development of organizations and individuals.',
+    links: [
+      { title: 'Who We Are', href: '/en/about/who-we-are' },
+      { title: 'What We Do', href: '/en/about/what-we-do' },
+      { title: 'Why HGA', href: '/en/about/why-hga' },
+    ],
+  },
+};
+
+const t = content[locale as keyof typeof content];
+---
+
+<Layout title={title}>
+  <div class="max-w-3xl">
+    <h1 class="mb-6 text-4xl font-bold text-gray-900">{t.title}</h1>
+    <p class="mb-8 text-lg leading-relaxed text-gray-700">{t.description}</p>
+
+    <ul class="space-y-2">
+      {t.links.map((link) => (
+        <li>
+          <a href={link.href} class="text-lg text-[#F9931F] hover:underline">
+            {link.title}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Layout>

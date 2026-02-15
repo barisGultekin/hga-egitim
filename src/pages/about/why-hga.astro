@@ -1,0 +1,65 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const locale = Astro.currentLocale || 'tr';
+const title = locale === 'tr' ? 'Neden HGA' : 'Why HGA';
+
+const content = {
+  tr: {
+    intro: 'Siz bizimle temas kurduktan sonra;',
+    commitments: [
+      'Sorun ve ihtiyaçlarınızın dinlenmesi,',
+      'Kurumunuzun size özel koşullarının tam olarak anlaşılması,',
+      'Talep edilirse, eğitim ihtiyaç analizinin sizinle birlikte yapılması,',
+      'Katılımcı profiliniz ile ilgili ayrıntılı bilgi alarak, profile uygun bir çalışmanın hazırlanması,',
+      'Çalışanlarınızın çalışma koşullarının anlaşılması,',
+      'Eğitim ve danışmanlık sonrasında, eğitimin etkilerinin takibi,',
+      'Programın bitişinden sonra da, her türlü soru ve soruna destek',
+    ],
+    outro: 'için size ayıracak zamanımız mutlaka var.',
+    passion: 'Her yeni projeyi, ilk projemizmiş gibi hevesle, tüm bilgi ve deneyimimizi katarak incelikle hazırlıyoruz.',
+    track: '2012 yılının başından beri faaliyet gösteren ve şimdiden onlarca proje yürütmüş kurumumuzun, şu an\'a kadarki tüm değerlendirmeleri, başarılı olduğu ve katkı sağladığı yönünde.',
+  },
+  en: {
+    intro: 'After you contact us, we always have time for:',
+    commitments: [
+      'Listening to your problems and needs,',
+      'Fully understanding your organization\'s specific conditions,',
+      'If requested, conducting training needs analysis together with you,',
+      'Receiving detailed information about your participant profile and preparing work suitable for that profile,',
+      'Understanding your employees\' working conditions,',
+      'Following up on the training\'s effects after training and consultancy,',
+      'Supporting any questions and problems even after the program ends',
+    ],
+    outro: '',
+    passion: 'We prepare each new project with enthusiasm as if it were our first project, carefully incorporating all our knowledge and experience.',
+    track: 'Since the beginning of 2012, our organization has been operating and has already carried out dozens of projects. All evaluations to date indicate that it has been successful and has made a contribution.',
+  },
+};
+
+const lang = locale as 'tr' | 'en';
+---
+
+<Layout title={title}>
+  <div class="max-w-3xl">
+    <h1 class="mb-6 text-4xl font-bold text-gray-900">{title}</h1>
+
+    <div class="space-y-6">
+      <p class="text-lg text-gray-700">{content[lang].intro}</p>
+
+      <ul class="list-disc space-y-2 pl-6 text-gray-700">
+        {content[lang].commitments.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+
+      {content[lang].outro && (
+        <p class="text-lg text-gray-700">{content[lang].outro}</p>
+      )}
+
+      <p class="text-lg leading-relaxed text-gray-700">{content[lang].passion}</p>
+
+      <p class="text-lg leading-relaxed text-gray-700">{content[lang].track}</p>
+    </div>
+  </div>
+</Layout>

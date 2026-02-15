@@ -1,0 +1,50 @@
+---
+import Layout from "@/layouts/Layout.astro";
+
+const locale = Astro.currentLocale || "tr";
+const title = locale === "tr" ? "Biz Kimiz" : "Who We Are";
+
+const content = {
+  tr: {
+    founding:
+      "HGA, 2012 yılının başında Handan GÜLTEKİN AKTUĞ tarafından kurulmuştur.",
+    founder:
+      "Handan GÜLTEKİN AKTUĞ, Sosyoloji ve Psikoloji alanlarında lisans ve yüksek lisans eğitimini Hacettepe Üniversitesi'nde ve Arel Üniversitesi'nde, doktora eğitimini ise Cerrahpaşa Üniversitesi'nde tamamlamıştır.",
+    network:
+      "HGA Eğitim ve Danışmanlık, uluslararası eğitimci ve danışmanlık network'üne üyedir. Uluslarası projelere network aracılığı ile katılan HGA, yurt içindeki büyük projelerde; güvenilir, konusunun uzmanı eğitimci ve danışmanlarla birlikte hizmet üretmektedir.",
+    team: "HGA ismi altında çalışan bütün eğitimci ve danışmanlar, alanlarında eğitimli ve tecrübeli eğitimcilerdir.",
+  },
+  en: {
+    founding: "HGA was founded by Handan GÜLTEKİN AKTUĞ in early 2012.",
+    founder:
+      "Handan GÜLTEKİN AKTUĞ completed her bachelor's and master's degrees in Sociology and Psychology at Hacettepe University and Arel University, and her doctoral studies at Cerrahpaşa University.",
+    network:
+      "HGA Training and Consultancy is a member of an international trainer and consultancy network. Participating in international projects through this network, HGA provides services in major domestic projects together with reliable, expert trainers and consultants.",
+    team: "All trainers and consultants working under the HGA name are trained and experienced professionals in their fields.",
+  },
+};
+
+const lang = locale as "tr" | "en";
+---
+
+<Layout title={title}>
+  <div class="max-w-3xl">
+    <h1 class="mb-6 text-4xl font-bold text-gray-900">{title}</h1>
+
+    <div class="space-y-6">
+      <p class="text-lg leading-relaxed text-gray-700">
+        {content[lang].founding}
+      </p>
+
+      <p class="text-lg leading-relaxed text-gray-700">
+        {content[lang].founder}
+      </p>
+
+      <p class="text-lg leading-relaxed text-gray-700">
+        {content[lang].network}
+      </p>
+
+      <p class="text-lg leading-relaxed text-gray-700">{content[lang].team}</p>
+    </div>
+  </div>
+</Layout>

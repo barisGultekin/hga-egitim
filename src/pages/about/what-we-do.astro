@@ -1,0 +1,130 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const locale = Astro.currentLocale || 'tr';
+const title = locale === 'tr' ? 'Ne Yapıyoruz' : 'What We Do';
+
+const content = {
+  tr: {
+    intro: 'HGA Eğitim ve Danışmanlık, kurumlara, eğitim ve koçluk araçlarını kullanarak kurumsal gelişimleri için destek sağlar.',
+    section1: {
+      title: '1. İletişim Becerileri',
+      description: 'Kurum içi iletişim ve kurumun müşteri ile iletişimi başta olmak üzere, tüm iletişim süreçlerinde',
+      skills: [
+        'Yapıcı',
+        'Hızlı',
+        'Hedefe yönelik',
+        'İşlevsel',
+        'Çözüm üreten',
+        'Kurumun ve kişinin, diğerlerinin gözünde profesyonel imajını oluşturan ve koruyan',
+      ],
+      outro: 'teknik ve becerilerin kazandırılmasını sağlar.',
+    },
+    section2: {
+      title: '2. Yönetim ve Liderlik',
+      description: 'Kurumsal gelişim, yetkin yöneticileri gerektirir. Yetkin yönetim ve liderlik için; katılımcıya kendini görme ve değerlendirme olanağı sunan eğitim ortamlarında,',
+      skills: [
+        'Farkındalık',
+        'Bilgi',
+        'Beceri',
+        'Motivasyon',
+      ],
+      outro: 'kazandıran programları, kurumun ihtiyacına uygun olarak hazırlar ve sunar.',
+    },
+    section3: {
+      title: '3. Koçluk Desteği',
+      description: 'Spesifik kişi, takım ya da sorunlar için; duruma ve kişiye özel çözümler üretmek üzere, koçluk desteği sağlar.',
+    },
+  },
+  en: {
+    intro: 'HGA Training and Consultancy supports organizations in their corporate development using training and coaching tools.',
+    section1: {
+      title: '1. Communication Skills',
+      description: 'In all communication processes, especially internal communication and communication with customers, we ensure the acquisition of technical skills and competencies that are:',
+      skills: [
+        'Constructive',
+        'Fast',
+        'Goal-oriented',
+        'Functional',
+        'Solution-generating',
+        'Building and maintaining the professional image of the organization and individuals in the eyes of others',
+      ],
+      outro: '',
+    },
+    section2: {
+      title: '2. Management and Leadership',
+      description: 'Corporate development requires competent managers. For competent management and leadership, we prepare and deliver programs that provide participants with self-awareness and evaluation opportunities, offering:',
+      skills: [
+        'Awareness',
+        'Knowledge',
+        'Skills',
+        'Motivation',
+      ],
+      outro: 'tailored to the organization\'s needs.',
+    },
+    section3: {
+      title: '3. Coaching Support',
+      description: 'For specific individuals, teams, or problems, we provide coaching support to create customized solutions for each situation and person.',
+    },
+  },
+};
+
+const lang = locale as 'tr' | 'en';
+---
+
+<Layout title={title}>
+  <div class="max-w-3xl">
+    <h1 class="mb-6 text-4xl font-bold text-gray-900">{title}</h1>
+
+    <div class="space-y-6">
+      <p class="text-lg leading-relaxed text-gray-700">{content[lang].intro}</p>
+
+      <div>
+        <h2 class="mb-3 text-2xl font-semibold text-gray-900">
+          {content[lang].section1.title}
+        </h2>
+        <p class="mb-3 text-lg leading-relaxed text-gray-700">
+          {content[lang].section1.description}
+        </p>
+        <ul class="mb-3 list-disc space-y-1 pl-6 text-gray-700">
+          {content[lang].section1.skills.map((skill) => (
+            <li>{skill}</li>
+          ))}
+        </ul>
+        {content[lang].section1.outro && (
+          <p class="text-lg leading-relaxed text-gray-700">
+            {content[lang].section1.outro}
+          </p>
+        )}
+      </div>
+
+      <div>
+        <h2 class="mb-3 text-2xl font-semibold text-gray-900">
+          {content[lang].section2.title}
+        </h2>
+        <p class="mb-3 text-lg leading-relaxed text-gray-700">
+          {content[lang].section2.description}
+        </p>
+        <ul class="mb-3 list-disc space-y-1 pl-6 text-gray-700">
+          {content[lang].section2.skills.map((skill) => (
+            <li>{skill}</li>
+          ))}
+        </ul>
+        {content[lang].section2.outro && (
+          <p class="text-lg leading-relaxed text-gray-700">
+            {content[lang].section2.outro}
+          </p>
+        )}
+      </div>
+
+      <div>
+        <h2 class="mb-3 text-2xl font-semibold text-gray-900">
+          {content[lang].section3.title}
+        </h2>
+        <p class="text-lg leading-relaxed text-gray-700">
+          {content[lang].section3.description}
+        </p>
+      </div>
+    </div>
+  </div>
+</Layout>

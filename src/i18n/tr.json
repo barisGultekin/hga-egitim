@@ -1,0 +1,109 @@
+{
+  "site": {
+    "title": "HGA Eğitim",
+    "description": "Profesyonel danışmanlık ve eğitim çözümleri"
+  },
+  "nav": {
+    "items": [
+      {
+        "title": "Ana Sayfa",
+        "href": "/"
+      },
+      {
+        "title": "Hakkımızda",
+        "href": "/about",
+        "children": [
+          {
+            "title": "Biz Kimiz",
+            "description": "Şirketimizin tarih ve yapısı hakkında bilgi",
+            "href": "/about/who-we-are"
+          },
+          {
+            "title": "Ne Yapıyoruz",
+            "description": "Sunduğumuz hizmetlerin özeti",
+            "href": "/about/what-we-do"
+          },
+          {
+            "title": "Neden HGA",
+            "description": "HGA ile çalışmanın avantajları",
+            "href": "/about/why-hga"
+          }
+        ]
+      },
+      {
+        "title": "Eğitimlerimiz",
+        "href": "/trainings",
+        "children": [
+          {
+            "title": "Yönetim Becerileri",
+            "description": "Liderlik ve yönetim kapasitenizi geliştirin",
+            "href": "/trainings/management-skills"
+          },
+          {
+            "title": "İletişim ve Çatışma Çözümü",
+            "description": "Etkin iletişim ve çatışma yönetimi",
+            "href": "/trainings/communication-conflict-resolution"
+          },
+          {
+            "title": "Modüler Eğitimler",
+            "description": "Esnek ve özelleştirilebilir eğitim modülleri",
+            "href": "/trainings/modular-trainings"
+          }
+        ]
+      },
+      {
+        "title": "Danışmanlık",
+        "href": "/consultancy",
+        "children": [
+          {
+            "title": "Yönetici Destek Programı",
+            "description": "Bireysel yönetici koçluk programı",
+            "href": "/consultancy/executive-support"
+          },
+          {
+            "title": "İlişki ve İletişim Becerileri",
+            "description": "Ekip içi ilişki ve iletişim geliştirme",
+            "href": "/consultancy/relationship-communication"
+          },
+          {
+            "title": "Takım Olabilmek",
+            "description": "Takım uyum ve gelişim programı",
+            "href": "/consultancy/being-a-team"
+          }
+        ]
+      },
+      {
+        "title": "Galeri",
+        "href": "/gallery"
+      },
+      {
+        "title": "İletişim",
+        "href": "/contact"
+      }
+    ]
+  },
+  "hero": {
+    "title": "Profesyonel Danışmanlık Çözümleri",
+    "subtitle": "İş dünyasında başarıya ulaşmak için size özel stratejiler ve eğitim programları sunuyoruz."
+  },
+  "sections": {
+    "references": "Referans Müşterilerimiz",
+    "testimonials": "Müşteri Görüşleri",
+    "gallery": "Eğitimlerden Görüntüler",
+    "gallerySeeAll": "Tüm Fotoğrafları Gör →",
+    "books": "Ne Okusam",
+    "watch": {
+      "title": "Videolar",
+      "vid1": "Liderlik",
+      "vid2": "Farkındalık"
+    },
+    "contact": {
+      "title": "İletişime Geçin",
+      "name": "Adınız",
+      "email": "E-posta",
+      "subject": "Konu",
+      "message": "Mesajınız",
+      "send": "Gönder"
+    }
+  }
+}

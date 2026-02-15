@@ -1,0 +1,57 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import TestimonialCard from '@/components/TestimonialCard.astro';
+import { testimonials } from '@/data/testimonials';
+import { referenceLogos } from '@/data/references';
+
+const locale = Astro.currentLocale || 'tr';
+const title = locale === 'tr' ? 'Referanslar & Görüşler' : 'References & Testimonials';
+---
+
+<Layout title={title}>
+  <!-- Page Header -->
+  <div class="mb-12">
+    <h1 class="mb-4 text-4xl font-bold text-gray-900">
+      {locale === 'tr' ? 'Referanslar & Müşteri Görüşleri' : 'References & Client Testimonials'}
+    </h1>
+    <p class="text-lg text-gray-600">
+      {locale === 'tr'
+        ? '20 yılı aşkın deneyimimizle 500\'den fazla kuruma eğitim ve danışmanlık hizmeti verdik.'
+        : 'With over 20 years of experience, we have provided training and consulting services to more than 500 organizations.'}
+    </p>
+  </div>
+
+  <!-- Reference Companies -->
+  <section class="mb-16">
+    <h2 class="mb-8 text-2xl font-semibold text-gray-900">
+      {locale === 'tr' ? 'Referans Müşterilerimiz' : 'Reference Customers'}
+    </h2>
+    <div class="grid grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-4">
+      {
+        referenceLogos.map((logo) => (
+          <div class="flex items-center justify-center rounded-lg border border-gray-200 bg-white p-6 transition-all hover:border-[#F9931F] hover:shadow-md">
+            <img
+              src={logo.src}
+              alt={logo.alt}
+              class="h-auto w-full max-w-[120px] object-contain grayscale transition-all hover:grayscale-0"
+            />
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="mb-16">
+    <h2 class="mb-8 text-2xl font-semibold text-gray-900">
+      {locale === 'tr' ? 'Müşteri Görüşleri' : 'Client Testimonials'}
+    </h2>
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {
+        testimonials.map((testimonial) => (
+          <TestimonialCard testimonial={testimonial} locale={locale} />
+        ))
+      }
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,55 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const locale = Astro.currentLocale || 'en';
+const title = 'Consultancy';
+
+const content = {
+  tr: {
+    title: 'Danışmanlık',
+    description: 'Kurumunuzun ihtiyaçlarına özel danışmanlık hizmetlerimiz, yöneticilerinizin gelişimi, ekip performansının artırılması ve kurumsal hedeflere ulaşma konularında profesyonel destek sağlar.',
+    links: [
+      { title: 'Yönetici Destek Programı', href: '/consultancy/executive-support' },
+      { title: 'İlişki ve İletişim Becerileri', href: '/consultancy/relationship-communication' },
+      { title: 'Takım Olabilmek', href: '/consultancy/being-a-team' },
+    ],
+  },
+  en: {
+    title: 'Consultancy',
+    description: 'Our consulting services, tailored to your organization\'s needs, provide professional support in developing your executives, increasing team performance, and achieving corporate goals.',
+    links: [
+      { title: 'Executive Support Program', href: '/en/consultancy/executive-support' },
+      { title: 'Relationship and Communication Skills', href: '/en/consultancy/relationship-communication' },
+      { title: 'Being a Team', href: '/en/consultancy/being-a-team' },
+    ],
+  },
+};
+
+const t = content[locale as keyof typeof content];
+---
+
+<Layout title={title}>
+  <div class="max-w-4xl">
+    <h1 class="mb-6 text-4xl font-bold text-gray-900">{t.title}</h1>
+    <p class="mb-12 text-lg leading-relaxed text-gray-700">{t.description}</p>
+
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {t.links.map((link) => (
+        <a
+          href={link.href}
+          class="group flex flex-col rounded-lg border-2 border-gray-200 bg-white p-6 transition-all hover:border-[#F9931F] hover:shadow-lg"
+        >
+          <h3 class="text-lg font-semibold text-gray-900 group-hover:text-[#F9931F]">
+            {link.title}
+          </h3>
+          <div class="mt-4 flex items-center text-sm font-medium text-[#F9931F]">
+            <span>{locale === 'tr' ? 'Detayları Görüntüle' : 'View Details'}</span>
+            <svg class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>

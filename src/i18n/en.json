@@ -1,0 +1,109 @@
+{
+  "site": {
+    "title": "HGA Training",
+    "description": "Professional consulting and training solutions"
+  },
+  "nav": {
+    "items": [
+      {
+        "title": "Home",
+        "href": "/"
+      },
+      {
+        "title": "About Us",
+        "href": "/about",
+        "children": [
+          {
+            "title": "Who We Are",
+            "description": "Learn about our company history and structure",
+            "href": "/about/who-we-are"
+          },
+          {
+            "title": "What We Do",
+            "description": "An overview of the services we offer",
+            "href": "/about/what-we-do"
+          },
+          {
+            "title": "Why HGA",
+            "description": "The advantages of working with HGA",
+            "href": "/about/why-hga"
+          }
+        ]
+      },
+      {
+        "title": "Our Trainings",
+        "href": "/trainings",
+        "children": [
+          {
+            "title": "Management Skills",
+            "description": "Develop your leadership and management capabilities",
+            "href": "/trainings/management-skills"
+          },
+          {
+            "title": "Communication and Conflict Resolution",
+            "description": "Effective communication and conflict management",
+            "href": "/trainings/communication-conflict-resolution"
+          },
+          {
+            "title": "Modular Trainings",
+            "description": "Flexible and customizable training modules",
+            "href": "/trainings/modular-trainings"
+          }
+        ]
+      },
+      {
+        "title": "Consultancy",
+        "href": "/consultancy",
+        "children": [
+          {
+            "title": "Executive Support Program",
+            "description": "Individual executive coaching program",
+            "href": "/consultancy/executive-support"
+          },
+          {
+            "title": "Relationship and Communication Skills",
+            "description": "Developing team relationships and communication",
+            "href": "/consultancy/relationship-communication"
+          },
+          {
+            "title": "Being a Team",
+            "description": "Team cohesion and development program",
+            "href": "/consultancy/being-a-team"
+          }
+        ]
+      },
+      {
+        "title": "Gallery",
+        "href": "/gallery"
+      },
+      {
+        "title": "Contact",
+        "href": "/contact"
+      }
+    ]
+  },
+  "hero": {
+    "title": "Professional Consulting Solutions",
+    "subtitle": "We provide tailored strategies and training programs to help you succeed in business."
+  },
+  "sections": {
+    "references": "Reference Customers",
+    "testimonials": "Testimonials",
+    "gallery": "Images from Trainings",
+    "gallerySeeAll": "View All Photos →",
+    "books": "Recommended Reading",
+    "watch": {
+      "title": "Watch",
+      "vid1": "Leadership",
+      "vid2": "Awareness"
+    },
+    "contact": {
+      "title": "Get in Touch",
+      "name": "Your Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Your Message",
+      "send": "Send"
+    }
+  }
+}

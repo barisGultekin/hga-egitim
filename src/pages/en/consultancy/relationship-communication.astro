@@ -1,0 +1,62 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const locale = Astro.currentLocale || 'en';
+const title = 'Relationship and Communication Skills';
+
+const content = {
+  tr: {
+    title: 'İlişki ve İletişim Becerileri',
+    description: 'Kurumsal başarının temelinde etkili iletişim ve sağlıklı ilişkiler yatar. İlişki ve İletişim Becerileri danışmanlık programımız, çalışanlarınızın birbirleriyle ve paydaşlarla olan iletişimlerini güçlendirerek iş birliği kültürünü geliştirmeyi amaçlar.',
+    sections: [
+      {
+        heading: 'Program İçeriği',
+        text: 'Etkili iletişim teknikleri, aktif dinleme becerileri, empati geliştirme, yapıcı geri bildirim verme ve alma, çatışma yönetimi ve müzakere becerileri konularında danışmanlık hizmeti sunuyoruz.',
+      },
+      {
+        heading: 'Hedef Kitle',
+        text: 'Tüm çalışan seviyeleri için uygundur. Özellikle müşteri ilişkileri, satış, insan kaynakları ve yönetim pozisyonlarında çalışanlar için kritik öneme sahiptir.',
+      },
+      {
+        heading: 'Beklenen Sonuçlar',
+        text: 'İletişim kalitesinde artış, departmanlar arası iş birliğinde güçlenme, çatışmaların yapıcı şekilde çözülmesi ve genel iş verimliliğinde iyileşme sağlanır.',
+      },
+    ],
+  },
+  en: {
+    title: 'Relationship and Communication Skills',
+    description: 'Effective communication and healthy relationships are the foundation of corporate success. Our Relationship and Communication Skills consulting program aims to develop a culture of collaboration by strengthening your employees\' communication with each other and stakeholders.',
+    sections: [
+      {
+        heading: 'Program Content',
+        text: 'We provide consulting services on effective communication techniques, active listening skills, empathy development, giving and receiving constructive feedback, conflict management, and negotiation skills.',
+      },
+      {
+        heading: 'Target Audience',
+        text: 'Suitable for all employee levels. It is particularly critical for those working in customer relations, sales, human resources, and management positions.',
+      },
+      {
+        heading: 'Expected Results',
+        text: 'Increase in communication quality, strengthening of inter-departmental collaboration, constructive resolution of conflicts, and improvement in overall work efficiency.',
+      },
+    ],
+  },
+};
+
+const t = content[locale as keyof typeof content];
+---
+
+<Layout title={title}>
+  <div class="max-w-3xl">
+    <h1 class="mb-6 text-4xl font-bold text-gray-900">{t.title}</h1>
+
+    <p class="mb-8 text-lg leading-relaxed text-gray-700">{t.description}</p>
+
+    {t.sections.map((section) => (
+      <div class="mb-6">
+        <h2 class="mb-3 text-2xl font-semibold text-gray-900">{section.heading}</h2>
+        <p class="leading-relaxed text-gray-700">{section.text}</p>
+      </div>
+    ))}
+  </div>
+</Layout>

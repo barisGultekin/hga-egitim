@@ -1,0 +1,55 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const locale = Astro.currentLocale || 'en';
+const title = 'Modular Trainings';
+
+const content = {
+  tr: {
+    title: 'Modüler Eğitimler',
+    intro: 'Yarım günlük modüler eğitimlerimiz:',
+    modules: [
+      'Raporlama Teknikleri',
+      'Yazışma Teknikleri',
+      'Sunum Teknikleri',
+      'Mülakat Teknikleri ve Süreç Yönetimi',
+      'Zaman Yönetimi',
+      'Stres Yönetimi',
+      'Öğrenme Teknikleri',
+    ],
+    description: 'Bu modüller yarım gün olarak planlanmaktadır. Ancak bir modüle uygulamalı pratiklerin eklenmesi halinde tam gün olarak planlanabilir.',
+  },
+  en: {
+    title: 'Modular Trainings',
+    intro: 'Our half-day modular trainings:',
+    modules: [
+      'Reporting Techniques',
+      'Correspondence Techniques',
+      'Presentation Techniques',
+      'Interview Techniques and Process Management',
+      'Time Management',
+      'Stress Management',
+      'Learning Techniques',
+    ],
+    description: 'These modules are planned as half-day sessions. However, if practical exercises are added to a module, it can be planned as a full-day training.',
+  },
+};
+
+const t = content[locale as keyof typeof content];
+---
+
+<Layout title={title}>
+  <div class="max-w-3xl">
+    <h1 class="mb-6 text-4xl font-bold text-gray-900">{t.title}</h1>
+
+    <p class="mb-4 text-lg leading-relaxed text-gray-700">{t.intro}</p>
+
+    <ul class="mb-6 list-disc space-y-2 pl-6 text-gray-700">
+      {t.modules.map((module) => (
+        <li>{module}</li>
+      ))}
+    </ul>
+
+    <p class="leading-relaxed text-gray-700">{t.description}</p>
+  </div>
+</Layout>
