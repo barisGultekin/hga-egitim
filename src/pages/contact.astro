@@ -1,23 +1,43 @@
 ---
-import Layout from '@/layouts/Layout.astro';
+import Layout from "@/layouts/Layout.astro";
 
-const locale = Astro.currentLocale || 'tr';
-const title = locale === 'tr' ? 'İletişim' : 'Contact';
+const locale = Astro.currentLocale || "tr";
+const title = locale === "tr" ? "İletişim" : "Contact";
 
 const content = {
   tr: {
-    title: 'İletişim',
-    heading: 'Bizimle İletişime Geçin',
-    description: 'Eğitim ve danışmanlık hizmetlerimiz hakkında detaylı bilgi almak veya sorularınız için bizimle iletişime geçebilirsiniz.',
-    phone: 'Telefon',
-    email: 'E-posta',
+    title: "İletişim",
+    heading: "Bizimle İletişime Geçin",
+    description:
+      "Eğitim ve danışmanlık hizmetlerimiz hakkında detaylı bilgi almak veya sorularınız için bizimle iletişime geçebilirsiniz.",
+    phone: "Telefon",
+    email: "E-posta",
+    form_name: "Adınız Soyadınız",
+    form_email: "E-posta Adresiniz",
+    form_subject: "Konu",
+    form_message: "Mesajınız",
+    form_send: "Gönder",
+    placeholder_name: "Adınız Soyadınız",
+    placeholder_email: "ornek@email.com",
+    placeholder_subject: "Mesajınızın konusu",
+    placeholder_message: "Mesajınızı buraya yazın...",
   },
   en: {
-    title: 'Contact',
-    heading: 'Get in Touch',
-    description: 'Contact us for detailed information about our training and consulting services or for your questions.',
-    phone: 'Phone',
-    email: 'Email',
+    title: "Contact",
+    heading: "Get in Touch",
+    description:
+      "Contact us for detailed information about our training and consulting services or for your questions.",
+    phone: "Phone",
+    email: "Email",
+    form_name: "Your Name",
+    form_email: "Your Email",
+    form_subject: "Subject",
+    form_message: "Your Message",
+    form_send: "Send",
+    placeholder_name: "Your full name",
+    placeholder_email: "example@email.com",
+    placeholder_subject: "Subject of your message",
+    placeholder_message: "Write your message here...",
   },
 };
 
@@ -33,17 +53,170 @@ const t = content[locale as keyof typeof content];
     <div class="space-y-4">
       <div>
         <h2 class="mb-2 text-xl font-semibold text-gray-900">{t.phone}</h2>
-        <a href="tel:+905332604450" class="text-lg text-[#F9931F] hover:underline">
+        <a
+          href="tel:+905332604450"
+          class="text-lg text-[#F9931F] hover:underline"
+        >
           0533 260 44 50
         </a>
       </div>
 
       <div>
         <h2 class="mb-2 text-xl font-semibold text-gray-900">{t.email}</h2>
-        <a href="mailto:info@hgaegitim.com" class="text-lg text-[#F9931F] hover:underline">
+        <a
+          href="mailto:info@hgaegitim.com"
+          class="text-lg text-[#F9931F] hover:underline"
+        >
           info@hgaegitim.com
         </a>
       </div>
     </div>
+
+    <!-- Contact Form -->
+    <div class="mt-12 border-t pt-12">
+      <h2 class="mb-6 text-2xl font-semibold text-gray-900">
+        {locale === "tr" ? "Bize Yazın" : "Write to Us"}
+      </h2>
+      <form
+        id="contact-form"
+        data-success-msg={locale === "tr"
+          ? "Mesajınız başarıyla alındı."
+          : "Message received successfully."}
+        data-error-msg={locale === "tr"
+          ? "Bir hata oluştu."
+          : "Something went wrong."}
+        action="https://formspree.io/f/mqedbjka"
+        method="POST"
+        class="space-y-6"
+      >
+        <div class="grid gap-6 md:grid-cols-2">
+          <div>
+            <label
+              for="name"
+              class="mb-2 block text-sm font-semibold text-gray-700"
+            >
+              {t.form_name}
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              class="w-full rounded-lg border-2 border-gray-200 bg-white px-4 py-3 transition-all focus:border-[#F9931F] focus:outline-none focus:ring-4 focus:ring-[#F9931F]/10"
+              placeholder={t.placeholder_name}
+            />
+          </div>
+
+          <div>
+            <label
+              for="email"
+              class="mb-2 block text-sm font-semibold text-gray-700"
+            >
+              {t.form_email}
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              class="w-full rounded-lg border-2 border-gray-200 bg-white px-4 py-3 transition-all focus:border-[#F9931F] focus:outline-none focus:ring-4 focus:ring-[#F9931F]/10"
+              placeholder={t.placeholder_email}
+            />
+          </div>
+        </div>
+
+        <div>
+          <label
+            for="subject"
+            class="mb-2 block text-sm font-semibold text-gray-700"
+          >
+            {t.form_subject}
+          </label>
+          <input
+            type="text"
+            id="subject"
+            name="subject"
+            required
+            class="w-full rounded-lg border-2 border-gray-200 bg-white px-4 py-3 transition-all focus:border-[#F9931F] focus:outline-none focus:ring-4 focus:ring-[#F9931F]/10"
+            placeholder={t.placeholder_subject}
+          />
+        </div>
+
+        <div>
+          <label
+            for="message"
+            class="mb-2 block text-sm font-semibold text-gray-700"
+          >
+            {t.form_message}
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            required
+            class="w-full rounded-lg border-2 border-gray-200 bg-white px-4 py-3 transition-all focus:border-[#F9931F] focus:outline-none focus:ring-4 focus:ring-[#F9931F]/10"
+            placeholder={t.placeholder_message}></textarea>
+        </div>
+
+        <div class="pt-2">
+          <button
+            type="submit"
+            class="rounded-lg bg-[#040A23] px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:bg-[#0a1642] hover:shadow-xl active:scale-[0.98]"
+          >
+            {t.form_send}
+          </button>
+        </div>
+        <div id="form-result" class="mt-4 hidden text-center"></div>
+      </form>
+    </div>
   </div>
+
+  <script>
+    const form = document.getElementById("contact-form");
+    const result = document.getElementById("form-result");
+
+    if (form && result) {
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const successMsg = form.dataset.successMsg;
+        const errorMsg = form.dataset.errorMsg;
+        const originalBtnText = form.querySelector(
+          'button[type="submit"]'
+        ).textContent;
+
+        const btn = form.querySelector('button[type="submit"]');
+        if (btn) btn.disabled = true;
+
+        fetch(form.action, {
+          method: "POST",
+          body: formData,
+          headers: {
+            Accept: "application/json",
+          },
+        })
+          .then((response) => {
+            if (response.ok) {
+              result.textContent = successMsg;
+              result.className =
+                "mt-4 text-center font-semibold text-green-600";
+              result.classList.remove("hidden");
+              form.reset();
+            } else {
+              result.textContent = errorMsg;
+              result.className = "mt-4 text-center font-semibold text-red-600";
+              result.classList.remove("hidden");
+            }
+          })
+          .catch((error) => {
+            result.textContent = errorMsg;
+            result.className = "mt-4 text-center font-semibold text-red-600";
+            result.classList.remove("hidden");
+          })
+          .finally(() => {
+            if (btn) btn.disabled = false;
+          });
+      });
+    }
+  </script>
 </Layout>
