@@ -44,9 +44,14 @@ const content = {
 };
 
 const t = content[locale as keyof typeof content];
+
+const description =
+  locale === "tr"
+    ? "Yönetici koçluğu ve Yönetici Destek Programı. Liderlik becerileri, stratejik düşünme ve yönetim performansını artırmak için bireysel koçluk. Handan Gültekin Aktuğ ile çalışın."
+    : "Executive coaching and Executive Support Program. Individual coaching to develop leadership skills, strategic thinking, and management performance with Handan Gultekin Aktug.";
 ---
 
-<Layout title={title}>
+<Layout title={title} {description}>
   <div class="max-w-3xl">
     <h1 class="mb-6 text-4xl font-bold text-gray-900">{t.title}</h1>
 

@@ -6,17 +6,37 @@ import { getTranslations } from "../i18n/utils";
 
 interface Props {
   title?: string;
+  description?: string;
   fullWidth?: boolean;
   immersiveHeader?: boolean;
+  schema?: string;
 }
 
 const locale = Astro.currentLocale || "tr";
 const t = getTranslations(locale);
 const {
   title = t.site.title,
+  description = t.site.description,
   fullWidth = false,
   immersiveHeader = false,
+  schema,
 } = Astro.props;
+
+const siteUrl = "https://hgaegitim.com";
+const canonicalUrl = `${siteUrl}${Astro.url.pathname}`;
+
+const currentPath = Astro.url.pathname;
+const trUrl =
+  locale === "en"
+    ? `${siteUrl}${currentPath.replace(/^\/en/, "") || "/"}`
+    : `${siteUrl}${currentPath}`;
+const enUrl =
+  locale === "tr"
+    ? `${siteUrl}/en${currentPath}`
+    : `${siteUrl}${currentPath}`;
+
+const ogLocale = locale === "tr" ? "tr_TR" : "en_US";
+const ogLocaleAlternate = locale === "tr" ? "en_US" : "tr_TR";
 ---
 
 <!DOCTYPE html>
@@ -40,8 +60,37 @@ const {
     <meta name="apple-mobile-web-app-title" content="HGA Eğitim" />
     <link rel="manifest" href="/hga-favicon/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={t.site.description} />
+
+    <!-- Primary Meta Tags -->
     <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Hreflang -->
+    <link rel="alternate" hreflang="tr" href={trUrl} />
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="x-default" href={trUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://hgaegitim.com/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="HGA Eğitim" />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:locale:alternate" content={ogLocaleAlternate} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://hgaegitim.com/og.png" />
+
+    <!-- JSON-LD Structured Data -->
+    {schema && <script type="application/ld+json" set:html={schema} />}
   </head>
   <body class="flex min-h-[120vh] flex-col bg-gray-50 text-gray-900">
     <Header locale={locale} immersive={immersiveHeader} />

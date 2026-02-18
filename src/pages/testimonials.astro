@@ -6,9 +6,14 @@ import { referenceLogos } from '@/data/references';
 
 const locale = Astro.currentLocale || 'tr';
 const title = locale === 'tr' ? 'Referanslar & Görüşler' : 'References & Testimonials';
+
+const description =
+  locale === "tr"
+    ? "HGA Eğitim referansları ve müşteri görüşleri. Yönetici koçluğu, etkili iletişim ve kurumsal eğitimlerimizden faydalanan 500+ kuruluşun değerlendirmeleri."
+    : "HGA Training references and client testimonials. Reviews from 500+ organizations benefiting from our executive coaching, effective communication and corporate training programs.";
 ---
 
-<Layout title={title}>
+<Layout title={title} {description}>
   <!-- Page Header -->
   <div class="mb-12">
     <h1 class="mb-4 text-4xl font-bold text-gray-900">

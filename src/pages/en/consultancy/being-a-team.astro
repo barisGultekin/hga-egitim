@@ -44,9 +44,14 @@ const content = {
 };
 
 const t = content[locale as keyof typeof content];
+
+const description =
+  locale === "tr"
+    ? "Takım koçluğu ve Takım Olabilmek programı. Ekip sinerjisini artıran, güven inşa eden ve takım performansını yükselten kurumsal danışmanlık hizmeti."
+    : "Team coaching and Being a Team program. Corporate consulting service that builds team synergy, trust, and collective performance.";
 ---
 
-<Layout title={title}>
+<Layout title={title} {description}>
   <div class="max-w-3xl">
     <h1 class="mb-6 text-4xl font-bold text-gray-900">{t.title}</h1>
 

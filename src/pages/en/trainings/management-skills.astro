@@ -32,9 +32,14 @@ const content = {
 };
 
 const lang = locale as 'tr' | 'en';
+
+const description =
+  locale === "tr"
+    ? "Yönetim becerileri ve liderlik eğitimleri: değişim yönetimi, stratejik planlama, lider yönetici olabilme. Koçluk destekli, kuruma özel tasarlanmış liderlik geliştirme programları."
+    : "Management skills and leadership training: change management, strategic planning, leader-manager development. Coaching-supported, custom-designed leadership development programs.";
 ---
 
-<Layout title={title}>
+<Layout title={title} {description}>
   <div class="max-w-3xl">
     <h1 class="mb-6 text-4xl font-bold text-gray-900">{title}</h1>
 

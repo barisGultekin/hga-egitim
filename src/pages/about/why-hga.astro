@@ -38,9 +38,14 @@ const content = {
 };
 
 const lang = locale as 'tr' | 'en';
+
+const description =
+  locale === "tr"
+    ? "Neden HGA Eğitim? 2012'den bu yana 500+ kurumda kanıtlanmış deneyim, ihtiyaca özel programlar, uluslararası eğitimci ağı ve Handan Gültekin Aktuğ'un uzman koçluk desteği."
+    : "Why HGA Training? Proven experience across 500+ organizations since 2012, tailored programs, an international trainer network, and expert coaching support by Handan Gultekin Aktug.";
 ---
 
-<Layout title={title}>
+<Layout title={title} {description}>
   <div class="max-w-3xl">
     <h1 class="mb-6 text-4xl font-bold text-gray-900">{title}</h1>
 

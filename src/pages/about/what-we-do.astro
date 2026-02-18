@@ -70,9 +70,14 @@ const content = {
 };
 
 const lang = locale as 'tr' | 'en';
+
+const description =
+  locale === "tr"
+    ? "HGA Eğitim; iletişim becerileri, yönetim ve liderlik eğitimleri ile bireysel koçluk desteği sağlar. Duyarlı iletişim, müşteri ile iletişim ve modüler eğitim çözümleri."
+    : "HGA Training provides communication skills, management and leadership training, and individual coaching support. Responsive communication, customer communication and modular training solutions.";
 ---
 
-<Layout title={title}>
+<Layout title={title} {description}>
   <div class="max-w-3xl">
     <h1 class="mb-6 text-4xl font-bold text-gray-900">{title}</h1>
 

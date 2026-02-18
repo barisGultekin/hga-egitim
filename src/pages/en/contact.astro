@@ -42,9 +42,14 @@ const content = {
 };
 
 const t = content[locale as keyof typeof content];
+
+const description =
+  locale === "tr"
+    ? "HGA Eğitim ile iletişime geçin. Yönetici koçluğu, takım koçluğu, etkili iletişim ve modüler eğitim hizmetleri için bize ulaşın. İstanbul, Küçükçekmece."
+    : "Get in touch with HGA Training. Contact us for executive coaching, team coaching, effective communication and modular training services. Istanbul.";
 ---
 
-<Layout title={title}>
+<Layout title={title} {description}>
   <div class="max-w-3xl">
     <h1 class="mb-6 text-4xl font-bold text-gray-900">{t.heading}</h1>
 

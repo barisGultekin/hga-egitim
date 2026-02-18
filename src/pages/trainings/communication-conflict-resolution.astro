@@ -44,9 +44,14 @@ const content = {
 };
 
 const lang = locale as 'tr' | 'en';
+
+const description =
+  locale === "tr"
+    ? "Etkili iletişim ve çatışma çözümü eğitimleri. Duyarlı iletişim, müşteri ile iletişim ve ekip içi iletişim becerilerini geliştiren, kurumunuza özel kurumsal eğitim programları."
+    : "Effective communication and conflict resolution training. Corporate programs to develop sensitive communication, customer communication and team interaction skills, tailored to your organization.";
 ---
 
-<Layout title={title}>
+<Layout title={title} {description}>
   <div class="max-w-3xl">
     <h1 class="mb-6 text-4xl font-bold text-gray-900">{title}</h1>
 

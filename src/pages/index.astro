@@ -12,9 +12,43 @@ import { referenceLogos } from "@/data/references";
 
 const locale = Astro.currentLocale || "tr";
 const t = getTranslations(locale);
+
+const description =
+  "Handan Gültekin Aktuğ'un kurduğu HGA Eğitim; yönetici koçluğu, takım koçluğu, etkili iletişim ve modüler eğitim alanında kurumsal çözümler sunar. 500+ kuruluşa hizmet.";
+
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "HGA Eğitim",
+  url: "https://hgaegitim.com",
+  logo: "https://hgaegitim.com/hga-favicon/favicon.svg",
+  foundingDate: "2012",
+  founder: {
+    "@type": "Person",
+    name: "Handan Gültekin Aktuğ",
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+905332604450",
+    email: "info@hgaegitim.com",
+    contactType: "customer service",
+    availableLanguage: ["Turkish", "English"],
+  },
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Atakent, 243. Sk. No:6",
+    addressLocality: "Küçükçekmece",
+    addressRegion: "İstanbul",
+    postalCode: "34307",
+    addressCountry: "TR",
+  },
+  description:
+    "Handan Gültekin Aktuğ tarafından 2012'de kurulan HGA Eğitim; yönetici koçluğu, takım koçluğu, etkili iletişim ve modüler eğitim alanında kurumsal danışmanlık hizmetleri sunar.",
+  sameAs: ["https://hgaegitim.com/en"],
+});
 ---
 
-<Layout immersiveHeader>
+<Layout immersiveHeader {description} {schema}>
     <!-- Hero Carousel -->
     <HeroCarousel slot="hero" locale={locale} />
 
@@ -284,7 +318,7 @@ const t = getTranslations(locale);
 
                 <!-- Map -->
                 <a
-                    href="https://maps.app.goo.gl/6UTwo9hwoLNoWEFY7"
+                    href="https://maps.app.goo.gl/r39LGSFsF9QQVcFa9"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="group block overflow-hidden rounded-lg border-2 border-gray-200 transition-all hover:border-[#F9931F]"

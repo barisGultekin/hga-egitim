@@ -12,9 +12,43 @@ import { referenceLogos } from "@/data/references";
 
 const locale = Astro.currentLocale || "tr";
 const t = getTranslations(locale);
+
+const description =
+  "HGA Training, founded by Handan Gultekin Aktug, offers executive coaching, team coaching, effective communication and modular training for corporates. 500+ organizations served.";
+
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "HGA Training",
+  url: "https://hgaegitim.com/en",
+  logo: "https://hgaegitim.com/hga-favicon/favicon.svg",
+  foundingDate: "2012",
+  founder: {
+    "@type": "Person",
+    name: "Handan Gültekin Aktuğ",
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+905332604450",
+    email: "info@hgaegitim.com",
+    contactType: "customer service",
+    availableLanguage: ["Turkish", "English"],
+  },
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Atakent, 243. Sk. No:6",
+    addressLocality: "Küçükçekmece",
+    addressRegion: "İstanbul",
+    postalCode: "34307",
+    addressCountry: "TR",
+  },
+  description:
+    "HGA Training, founded by Handan Gultekin Aktug in 2012, provides corporate consulting services in executive coaching, team coaching, effective communication and modular training.",
+  sameAs: ["https://hgaegitim.com"],
+});
 ---
 
-<Layout immersiveHeader>
+<Layout immersiveHeader {description} {schema}>
     <!-- Hero Carousel -->
     <HeroCarousel slot="hero" locale={locale} />
 
@@ -282,7 +316,7 @@ const t = getTranslations(locale);
 
                 <!-- Map -->
                 <a
-                    href="https://maps.app.goo.gl/6UTwo9hwoLNoWEFY7"
+                    href="https://maps.app.goo.gl/r39LGSFsF9QQVcFa9"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="group block overflow-hidden rounded-lg border-2 border-gray-200 transition-all hover:border-[#F9931F]"
