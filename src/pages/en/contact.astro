@@ -1,5 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import MapLibreMap from "@/components/MapLibreMap.astro";
 
 const locale = Astro.currentLocale || "en";
 const title = "Contact";
@@ -76,6 +77,15 @@ const description =
         </a>
       </div>
     </div>
+
+    <!-- Map -->
+    <MapLibreMap
+      lat={41.0558652}
+      lng={28.7641888}
+      directionsUrl="https://maps.app.goo.gl/r39LGSFsF9QQVcFa9"
+      locale={locale}
+      class="mt-8 h-64 border-2 border-gray-200 md:h-80"
+    />
 
     <!-- Contact Form -->
     <div class="mt-12 border-t pt-12">

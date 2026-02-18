@@ -9,6 +9,7 @@ import { testimonials } from "@/data/testimonials";
 import { galleryImages } from "@/data/gallery";
 import { books } from "@/data/books";
 import { referenceLogos } from "@/data/references";
+import MapLibreMap from "@/components/MapLibreMap.astro";
 
 const locale = Astro.currentLocale || "tr";
 const t = getTranslations(locale);
@@ -317,34 +318,13 @@ const schema = JSON.stringify({
                 </div>
 
                 <!-- Map -->
-                <a
-                    href="https://maps.app.goo.gl/r39LGSFsF9QQVcFa9"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="group block overflow-hidden rounded-lg border-2 border-gray-200 transition-all hover:border-[#F9931F]"
-                >
-                    <div class="relative h-64 bg-gray-100 md:h-80">
-                        <iframe
-                            src="https://www.openstreetmap.org/export/embed.html?bbox=28.7541888%2C41.0458652%2C28.7741888%2C41.0658652&layer=mapnik&marker=41.0558652%2C28.7641888"
-                            class="h-full w-full"
-                            style="border: 0;"
-                            loading="lazy"
-                            title="Tema Istanbul Map"></iframe>
-                        <div
-                            class="absolute inset-0 flex items-center justify-center bg-black/0 transition-all group-hover:bg-black/10"
-                        >
-                            <span
-                                class="rounded-full bg-white px-4 py-2 text-sm font-semibold opacity-0 shadow-lg transition-opacity group-hover:opacity-100"
-                            >
-                                {
-                                    locale === "tr"
-                                        ? "Haritada Görüntüle"
-                                        : "View on Map"
-                                }
-                            </span>
-                        </div>
-                    </div>
-                </a>
+                <MapLibreMap
+                    lat={41.0558652}
+                    lng={28.7641888}
+                    directionsUrl="https://maps.app.goo.gl/r39LGSFsF9QQVcFa9"
+                    {locale}
+                    class="h-64 border-2 border-gray-200 md:h-80"
+                />
             </div>
         </div>
     </section>

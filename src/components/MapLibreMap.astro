@@ -1,0 +1,81 @@
+---
+import "maplibre-gl/dist/maplibre-gl.css";
+
+interface Props {
+  lat: number;
+  lng: number;
+  zoom?: number;
+  locale?: string;
+  directionsUrl?: string;
+  class?: string;
+}
+
+const {
+  lat,
+  lng,
+  zoom = 13,
+  locale = "tr",
+  directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`,
+  class: className,
+} = Astro.props;
+
+const directionsLabel = locale === "tr" ? "Yol Tarifi Al" : "Get Directions";
+---
+
+<div class:list={["relative overflow-hidden rounded-lg", className]}>
+  <div
+    class="maplibre-map h-full w-full"
+    data-lat={lat}
+    data-lng={lng}
+    data-zoom={zoom}
+  ></div>
+  <a
+    href={directionsUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="absolute bottom-3 right-3 z-10 flex items-center gap-1.5 rounded-full bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-md transition-all hover:bg-[#F9931F] hover:text-white"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+    </svg>
+    {directionsLabel}
+  </a>
+</div>
+
+<script>
+  import maplibregl from "maplibre-gl";
+
+  document.querySelectorAll<HTMLElement>(".maplibre-map").forEach((el) => {
+    const lat = parseFloat(el.dataset.lat!);
+    const lng = parseFloat(el.dataset.lng!);
+    const zoom = parseFloat(el.dataset.zoom!);
+
+    const map = new maplibregl.Map({
+      container: el,
+      style: "https://tiles.openfreemap.org/styles/positron",
+      center: [lng, lat],
+      zoom,
+      attributionControl: { compact: true },
+    });
+
+    map.scrollZoom.disable();
+    map.addControl(
+      new maplibregl.NavigationControl({ showCompass: false }),
+      "top-right",
+    );
+
+    new maplibregl.Marker({ color: "#F9931F" })
+      .setLngLat([lng, lat])
+      .addTo(map);
+  });
+</script>
